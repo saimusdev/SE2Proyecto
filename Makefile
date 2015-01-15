@@ -1,4 +1,4 @@
-PROJECT = SE2Proyecto
+PROJECT = se2proy
 
 # Toolchain and binaries used
 PREFIX := /usr/local/linaro/arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
@@ -15,9 +15,8 @@ DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 # Compiler object files 
 OBJDIR := $(CURDIR)/obj
 OBJS := \
-	$(OBJDIR)/$(PROJECT).o \
-	$(OBJDIR)/computos.o
-	$(OBJDIR)/servidores.o
+	$(OBJDIR)/computos.o \
+	$(OBJDIR)/servidores.o \
 	$(OBJDIR)/comun.o
 
 # Libraries

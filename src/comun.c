@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <errno.h>
+
 #include <time.h>
 #include <pthread.h>
 #include <semaphore.h>
@@ -10,7 +13,7 @@
 /******************************************************************************/
 
 // TASK 1
-#define T1_PRIORITY 5
+#define T1_PRIORITY 5 // 0..31
 #define T1_COMP_TIME 10
 #define T1_PERIOD 100
 
@@ -24,14 +27,13 @@
 #define T3_COMP_TIME 30
 #define T3_PERIOD 400
 
-
 /******************************************************************************/
 /*                        Global variables                                    */
 /******************************************************************************/
 
-pthread_t thr_t1;
-pthread_t thr_t2;
-pthread_t thr_t3;
+struct thread_arg {
+    int data1, data2;
+};
 
 void task1(void);
 void task2(void);
@@ -40,37 +42,124 @@ void task3(void);
 /*
  *  ======== main ========
  */
-void main()
+int main(void)
 {
-    pthread_attr_t thread_attr;
-    /* preparar atributos por defecto */ 
-    pthread_attr_init(&thread_attr);
-    
-    /* modificar atributos por defecto */ 
-    pthread_attr_*(&thread_attr, SOME_ATRIBUTE_VALUE_PARAMETER);
+
+    pthread_t thread1, thread2, thread3;
+    pthread_attr_t thread1_attr, thread2_attr, thread3_attr;
+    struct sched_param thread1_fifo_param, thread2_fifo_param, thread3_fifo_param;
+    struct thread_arg thread1_arg, thread2_arg, thread3_arg;
+
+    /* Initialize threads attributes with default values */ 
+    pthread_attr_init(&thread1_attr);
+    pthread_attr_init(&thread2_attr);
+    pthread_attr_init(&thread3_attr);
+
+    /* Define threads scheduling inheritance mode: not inherited, aka explicit */ 
+    if (pthread_attr_setinheritsched(&thread1_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
+        perror("Failed to set thread#1 scheduling inheritance mode:");
+        return -1;
+    }
+    if (pthread_attr_setinheritsched(&thread2_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
+        perror("Failed to set thread#2 scheduling inheritance mode:");
+        return -1;
+    }
+    if (pthread_attr_setinheritsched(&thread3_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
+        perror("Failed to set thread#3 scheduling inheritance mode:");
+        return -1;
+    }
+
+    /* Define threads scheduling policy: FIFO */ 
+    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
+        perror("Failed to set thread#1 scheduling policy:");
+        return -1;
+    }
+    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
+        perror("Failed to set thread#2 scheduling policy:");
+        return -1;
+    }
+    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
+        perror("Failed to set thread#3 scheduling policy:");
+        return -1;
+    }
+
+    /* Define threads fixed priority */ 
+    thread1_fifo_param.sched_priority = T1_PRIORITY;
+    thread2_fifo_param.sched_priority = T2_PRIORITY;
+    thread3_fifo_param.sched_priority = T3_PRIORITY;
+
+    /* Set threads scheduling parameters */
+    pthread_attr_setschedparam(&thread1_attr, &thread1_fifo_param);
+    pthread_attr_setschedparam(&thread2_attr, &thread2_fifo_param);
+    pthread_attr_setschedparam(&thread3_attr, &thread3_fifo_param);
 
 
-    /* Create three independent tasks */
-    Task_Params_init(&taskParams);
-    taskParams.priority = 5;
-    tsk1 = Task_create (task1, &taskParams, NULL);
+    /* Create three independent threads: one for each task */
+    if (pthread_create(&thread1, &thread1_attr, (void *)task1, &thread1_arg) != 0) {
+        perror("Failed to create thread #1:");
+        return -1;
+    }
+    if (pthread_create(&thread2, &thread2_attr, (void *)task2, &thread2_arg) != 0) {
+        perror("Failed to create thread #2:");
+        return -1;
+    }
+    if (pthread_create(&thread3, &thread3_attr, (void *)task3, &thread3_arg) != 0) {
+        perror("Failed to create thread #3:");
+        return -1;
+    }
 
-    Task_Params_init(&taskParams);
-    taskParams.priority = 3;
-    tsk2 = Task_create (task2, &taskParams, NULL);
+    Crear_Servidores ();
 
-    Task_Params_init(&taskParams);
-    taskParams.priority = 1;
-    tsk3 = Task_create (task3, &taskParams, NULL);
+    /** 
+     * Dead code (supposedly): 
+     * Wait for threads to finish. 
+     * Main thread sleeps forever */
+    if (pthread_join(thread1, NULL) != 0) {
+        perror("Thread #1 did not terminate normally: ");
+        return -1;
+    }
+    if (pthread_join(thread2, NULL) != 0) {
+        perror("Thread #1 did not terminate normally: ");
+        return -1;
+    }
+    if (pthread_join(thread3, NULL) != 0) {
+        perror("Thread #1 did not terminate normally: ");
+        return -1;
+    }
 
-    Crear_Servidores () ;
-
-    BIOS_start();
+    return 0;
 }
+
 
 /*
  *  ======== task1 ========
  */
+void task1(void)
+{
+    printf("Executing T1");
+}
+
+
+/*
+ *  ======== task1 ========
+ */
+void task2(void)
+{
+    printf("Executing T2");
+}
+
+
+/*
+ *  ======== task1 ========
+ */
+void task3(void)
+{
+    printf("Executing T3");
+}
+
+
+/*
+
 void task1(void)
 {
 
@@ -91,9 +180,6 @@ void task1(void)
     }
 }
 
-/*
- *  ======== task2 ========
- */
 void task2(void)
 {
 
@@ -114,10 +200,6 @@ void task2(void)
     }
 }
 
-
-/*
- *  ======== task3 ========
- */
 void task3(void)
 {
 
@@ -139,4 +221,4 @@ void task3(void)
     }
 }
 
-
+*/

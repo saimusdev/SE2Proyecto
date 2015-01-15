@@ -1,5 +1,6 @@
 .DS_Store
 .build-system
+se2proy
 *.pdf
 *.o
 libc_include
