@@ -16,7 +16,9 @@ DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 OBJDIR := $(CURDIR)/obj
 OBJS := \
 	$(OBJDIR)/$(PROJECT).o \
-	$(OBJDIR)/sum.o
+	$(OBJDIR)/computos.o
+	$(OBJDIR)/servidores.o
+	$(OBJDIR)/comun.o
 
 # Libraries
 LIBS = -lrt -lpthread

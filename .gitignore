@@ -1,3 +1,5 @@
-*.o
-.build-system
 .DS_Store
+.build-system
+*.pdf
+*.o
+libc_include
