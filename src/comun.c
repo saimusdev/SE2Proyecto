@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <errno.h>
 
 #include <time.h>
@@ -39,60 +40,60 @@ void task1(void);
 void task2(void);
 void task3(void);
 
-/*
- *  ======== main ========
- */
+
+int set_thread_attributes(pthread_attr_t attributes, int priority, int scheduling_algorithm)
+{
+    struct sched_param thread_param;
+
+    /* Initialize threads attributes with default values */
+    pthread_attr_init(&attributes);
+
+    /* Define threads scheduling inheritance mode: not inherited, aka explicit */ 
+    if (pthread_attr_setinheritsched(&attributes, PTHREAD_EXPLICIT_SCHED) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling inheritance mode:");
+        return -1;
+    }
+
+    /* Define threads scheduling policy: FIFO */ 
+    if (pthread_attr_setschedpolicy(&attributes, scheduling_algorithm) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling policy:");
+        return -1;
+    }
+
+    /* Define threads fixed priority */ 
+    thread_param.sched_priority = priority;
+
+    /* Set threads scheduling parameters */
+    if (pthread_attr_setschedparam(&attributes, &thread_param) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling parameters:");
+        return -1;
+    }
+
+    return 0;
+}
+
 int main(void)
 {
 
     pthread_t thread1, thread2, thread3;
     pthread_attr_t thread1_attr, thread2_attr, thread3_attr;
-    struct sched_param thread1_fifo_param, thread2_fifo_param, thread3_fifo_param;
     struct thread_arg thread1_arg, thread2_arg, thread3_arg;
 
-    /* Initialize threads attributes with default values */ 
-    pthread_attr_init(&thread1_attr);
-    pthread_attr_init(&thread2_attr);
-    pthread_attr_init(&thread3_attr);
 
-    /* Define threads scheduling inheritance mode: not inherited, aka explicit */ 
-    if (pthread_attr_setinheritsched(&thread1_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
-        perror("Failed to set thread#1 scheduling inheritance mode:");
+    /* Set thread attributes */ 
+    if (set_thread_attributes(thread1_attr, T1_PRIORITY, /*SCHED_FIFO*/-3) != 0) {
+        char *error_str = strerror(errno);
+        fprintf(stderr, error_str);
         return -1;
     }
-    if (pthread_attr_setinheritsched(&thread2_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
-        perror("Failed to set thread#2 scheduling inheritance mode:");
+    if (set_thread_attributes(thread2_attr, T2_PRIORITY, SCHED_FIFO) != 0) {
+        fprintf(stderr, strerror(errno));
         return -1;
     }
-    if (pthread_attr_setinheritsched(&thread3_attr, PTHREAD_EXPLICIT_SCHED) != 0) {
-        perror("Failed to set thread#3 scheduling inheritance mode:");
+    if (set_thread_attributes(thread3_attr, T3_PRIORITY, SCHED_FIFO) != 0) {
+        fprintf(stderr, strerror(errno));
         return -1;
     }
-
-    /* Define threads scheduling policy: FIFO */ 
-    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
-        perror("Failed to set thread#1 scheduling policy:");
-        return -1;
-    }
-    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
-        perror("Failed to set thread#2 scheduling policy:");
-        return -1;
-    }
-    if (pthread_attr_setschedpolicy(&thread1_attr, SCHED_FIFO) != 0) {
-        perror("Failed to set thread#3 scheduling policy:");
-        return -1;
-    }
-
-    /* Define threads fixed priority */ 
-    thread1_fifo_param.sched_priority = T1_PRIORITY;
-    thread2_fifo_param.sched_priority = T2_PRIORITY;
-    thread3_fifo_param.sched_priority = T3_PRIORITY;
-
-    /* Set threads scheduling parameters */
-    pthread_attr_setschedparam(&thread1_attr, &thread1_fifo_param);
-    pthread_attr_setschedparam(&thread2_attr, &thread2_fifo_param);
-    pthread_attr_setschedparam(&thread3_attr, &thread3_fifo_param);
-
 
     /* Create three independent threads: one for each task */
     if (pthread_create(&thread1, &thread1_attr, (void *)task1, &thread1_arg) != 0) {
@@ -136,25 +137,25 @@ int main(void)
  */
 void task1(void)
 {
-    printf("Executing T1");
+    printf("Executing task1\n");
 }
 
 
 /*
- *  ======== task1 ========
+ *  ======== task2 ========
  */
 void task2(void)
 {
-    printf("Executing T2");
+    printf("Executing task2\n");
 }
 
 
 /*
- *  ======== task1 ========
+ *  ======== task3 ========
  */
 void task3(void)
 {
-    printf("Executing T3");
+    printf("Executing task3\n");
 }
 
 
