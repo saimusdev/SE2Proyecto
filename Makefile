@@ -15,9 +15,9 @@ DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 # Compiler object files 
 OBJDIR := $(CURDIR)/obj
 OBJS := \
-	$(OBJDIR)/computos.o \
-	$(OBJDIR)/servidores.o \
-	$(OBJDIR)/comun.o
+	$(OBJDIR)/calc.o \
+	$(OBJDIR)/servers.o \
+	$(OBJDIR)/main.o
 
 # Libraries
 LIBS = -lrt -lpthread

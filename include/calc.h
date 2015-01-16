@@ -1,13 +1,13 @@
 /*
- * computos.h
+ * calc.h
  *
  *  Created on: 20/09/2013
  *      Author: JoseLuis
  */
 
-#ifndef _COMPUTOS_H_
-#define _COMPUTOS_H_
+#ifndef _CALC_H_
+#define _CALC_H_
 
 void CS (int ms);
 
-#endif /* _COMPUTOS_H_ */
+#endif /* _CALC_H_ */

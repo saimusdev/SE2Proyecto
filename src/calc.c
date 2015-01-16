@@ -1,10 +1,10 @@
 /*
- * computos.c
+ * computation.c
  *
  *  Created on: 20/09/2013
  *      Author: JoseLuis
  */
-#include "computos.h"
+#include "calc.h"
 
 
 void CS (int ms) {

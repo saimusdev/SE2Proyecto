@@ -1,22 +1,22 @@
 /*
- * servidores.h
+ * servers.h
  *
  *  Created on: 30/09/2013
  *      Author: José Luis Villarroel
  */
 
-#ifndef SERVIDORES_H_
-#define SERVIDORES_H_
+#ifndef _SERVERS_H
+#define _SERVERS_H
 
-void Crear_Servidores (void) ;
+void create_servers (void) ;
 
-// Servidor S1
+// Server S1
 void S11 (void) ;
 void S12 (void) ;
 
-// Servidor S2
+// Server S2
 void S21 (void) ;
 void S22 (void) ;
 
 
-#endif /* SERVIDORES_H_ */
+#endif /* _SERVERS_H */

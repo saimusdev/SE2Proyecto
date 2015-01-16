@@ -6,11 +6,11 @@
  */
 #include <stdio.h>
  
-#include "servidores.h"
-#include "computos.h"
+#include "servers.h"
+#include "calc.h"
 
 
-void Crear_Servidores (void) {
+void create_servers (void) {
 	printf("Creating servers\n");
 }
 
