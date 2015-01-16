@@ -8,34 +8,7 @@
 
 #include "calc.h"
 #include "servers.h"
-
-
-#define NUM_TASKS 3
-
-// TASK 1
-#define T1_PRIORITY 5 // 0..31
-#define T1_COMP_TIME 10
-#define T1_PERIOD 100
-void task1(void);
-/*************************/
-
-// TASK 2
-#define T2_PRIORITY 3
-#define T2_COMP_TIME 60
-#define T2_PERIOD 200
-void task2(void);
-/*************************/
-
-/* TASK 3 */
-#define T3_PRIORITY 1
-#define T3_COMP_TIME 30
-#define T3_PERIOD 400
-void task3(void);
-/*************************/
-
-struct thread_arg {
-    int data1, data2;
-};
+#include "tasks.h"
 
 void set_thread_attributes(pthread_attr_t *attributes, int priority, int scheduling_algorithm);
 
@@ -44,17 +17,20 @@ int main(void)
     int i;
 
     /* Pointers of tasks to be executed by each thread */
-    void (*tasks[]) (void) = { task1, task2, task3 };
+    //void (*tasks[]) (void) = { task1, task2, task3 };
+    void (*tasks[]) (void *) = { task1, task1, task1 };
 
     static const unsigned char tasks_priority[] = { T1_PRIORITY, T2_PRIORITY, T3_PRIORITY };
     
     pthread_t threads[NUM_TASKS];
     pthread_attr_t thread_attributes[NUM_TASKS];
-    struct thread_arg thread_args[NUM_TASKS];
+    struct task_params thread_args[NUM_TASKS];
     
     /* For each of the threads, set its attributes */ 
     for (i = 0; i < NUM_TASKS; i++)
     {
+        thread_args[i].one = i+1;
+        thread_args[i].two = 2*(i+1);
         set_thread_attributes(&thread_attributes[i], tasks_priority[i], SCHED_FIFO);
     }
 
@@ -106,102 +82,3 @@ void set_thread_attributes(pthread_attr_t *attributes, int priority, int schedul
 
 }
 
-/*
- *  ======== task1 ========
- */
-void task1(void)
-{
-    printf("Executing task1\n");
-}
-
-
-/*
- *  ======== task2 ========
- */
-void task2(void)
-{
-    printf("Executing task2\n");
-}
-
-
-/*
- *  ======== task3 ========
- */
-void task3(void)
-{
-    printf("Executing task3\n");
-}
-
-/*
- *  ======== task3 ========
- */
-void task4(void)
-{
-    printf("Executing task4\n");
-}
-
-
-/*
-
-void task1(void)
-{
-
-    UInt32 next, period = T1_PERIOD ;
-    int d ;
-
-    next = Clock_getTicks();
-
-    for (;;) {
-
-        CS (T1_COMP_TIME) ;
-        S11 () ;
-
-        next += period ;
-        d = next - Clock_getTicks() ;
-        if (d < 0) d = 0 ;
-        Task_sleep(d);
-    }
-}
-
-void task2(void)
-{
-
-    UInt32 next, period = T2_PERIOD ;
-    int d ;
-
-    next = Clock_getTicks();
-
-    for (;;) {
-
-        CS (T2_COMP_TIME) ;
-        S21 () ;
-
-        next += period ;
-        d = next - Clock_getTicks() ;
-        if (d < 0) d = 0 ;
-        Task_sleep(d);
-    }
-}
-
-void task3(void)
-{
-
-    UInt32 next, period = T3_PERIOD ;
-    int d ;
-
-    next = Clock_getTicks();
-
-    for (;;) {
-
-        S22 () ;
-    	CS (T3_COMP_TIME) ;
-    	S12 () ;
-
-        next += period ;
-        d = next - Clock_getTicks() ;
-        if (d < 0) d = 0 ;
-        Task_sleep(d);
-    }
-}
-
-*/
