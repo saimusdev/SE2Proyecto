@@ -41,22 +41,25 @@ void task2(void);
 void task3(void);
 
 
-int set_thread_attributes(pthread_attr_t attributes, int priority, int scheduling_algorithm)
+int init_thread(pthread_attr_t *attributes, int priority, int scheduling_algorithm)
 {
+
     struct sched_param thread_param;
 
     /* Initialize threads attributes with default values */
     pthread_attr_init(&attributes);
 
     /* Define threads scheduling inheritance mode: not inherited, aka explicit */ 
-    if (pthread_attr_setinheritsched(&attributes, PTHREAD_EXPLICIT_SCHED) != 0) {
-        fprintf(stderr,"Failed to set thread scheduling inheritance mode:");
+    if (pthread_attr_setinheritsched(attributes, PTHREAD_EXPLICIT_SCHED) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling inheritance mode\n");
+        perror("Error setting scheduling inheritance mode");
         return -1;
     }
 
     /* Define threads scheduling policy: FIFO */ 
-    if (pthread_attr_setschedpolicy(&attributes, scheduling_algorithm) != 0) {
-        fprintf(stderr,"Failed to set thread scheduling policy:");
+    if (pthread_attr_setschedpolicy(attributes, scheduling_algorithm) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling policy\n");
+        perror("Error setting scheduling policy");
         return -1;
     }
 
@@ -64,8 +67,9 @@ int set_thread_attributes(pthread_attr_t attributes, int priority, int schedulin
     thread_param.sched_priority = priority;
 
     /* Set threads scheduling parameters */
-    if (pthread_attr_setschedparam(&attributes, &thread_param) != 0) {
-        fprintf(stderr,"Failed to set thread scheduling parameters:");
+    if (pthread_attr_setschedparam(attributes, &thread_param) != 0) {
+        fprintf(stderr,"Failed to set thread scheduling parameters\n");
+        perror("Error setting thread scheduling parameters");
         return -1;
     }
 
@@ -79,33 +83,28 @@ int main(void)
     pthread_attr_t thread1_attr, thread2_attr, thread3_attr;
     struct thread_arg thread1_arg, thread2_arg, thread3_arg;
 
-
     /* Set thread attributes */ 
-    if (set_thread_attributes(thread1_attr, T1_PRIORITY, /*SCHED_FIFO*/-3) != 0) {
-        char *error_str = strerror(errno);
-        fprintf(stderr, error_str);
+    if (init_thread(&thread1_attr, T1_PRIORITY, SCHED_FIFO) != 0) {
         return -1;
     }
-    if (set_thread_attributes(thread2_attr, T2_PRIORITY, SCHED_FIFO) != 0) {
-        fprintf(stderr, strerror(errno));
+    if (init_thread(&thread2_attr, T2_PRIORITY, SCHED_FIFO) != 0) {
         return -1;
     }
-    if (set_thread_attributes(thread3_attr, T3_PRIORITY, SCHED_FIFO) != 0) {
-        fprintf(stderr, strerror(errno));
+    if (init_thread(&thread3_attr, T3_PRIORITY, SCHED_FIFO) != 0) {
         return -1;
     }
 
     /* Create three independent threads: one for each task */
     if (pthread_create(&thread1, &thread1_attr, (void *)task1, &thread1_arg) != 0) {
-        perror("Failed to create thread #1:");
+        fprintf(stderr,"Failed to create thread #1\n");;
         return -1;
     }
     if (pthread_create(&thread2, &thread2_attr, (void *)task2, &thread2_arg) != 0) {
-        perror("Failed to create thread #2:");
+        fprintf(stderr,"Failed to create thread #2\n");
         return -1;
     }
     if (pthread_create(&thread3, &thread3_attr, (void *)task3, &thread3_arg) != 0) {
-        perror("Failed to create thread #3:");
+        fprintf(stderr,"Failed to create thread #3\n");
         return -1;
     }
 

@@ -13,10 +13,10 @@ apt-get install gcc-arm-linux-gnueabihf
 
 ### Ubuntu 
 ```
-make 
+make -f Makefile_Ubuntu
 ```
 
 ### Other
 ```
-make -f Makefile_manual_install
+make
 ```

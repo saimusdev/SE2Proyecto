@@ -1,0 +1,8 @@
+On the beaglebone
+
+/ # ip addr add 172.27.29.190/25 dev eth0
+/ # ip link set dev eth0 up
+/ # route add default gw 172.27.29.129
+
+On the host
+sudo route -nv add -net 10.37.129.0/24 -interface vboxnet2

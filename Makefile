@@ -1,7 +1,7 @@
 PROJECT = se2proy
 
 # Toolchain and binaries used
-PREFIX := /usr/bin/arm-linux-gnueabihf-
+PREFIX := /usr/local/linaro/arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 CC := $(PREFIX)gcc
 LD := $(PREFIX)gcc
 
@@ -27,14 +27,15 @@ CFLAGS = -Wall
 
 # Includes
 IFLAGS	= \
-	-I/usr/arm-linux-gnueabihf/include \
+	-I$(TARGET)/arm-linux-gnueabihf/libc/usr/include \
 	-I. \
 	-I$(INCLUDEDIR)
 
 # Linker options
 LDFLAGS	= \
 	-static \
-	-L/usr/arm-linux-gnueabihf/lib 
+	-L$(TARGET)/arm-linux-gnueabihf/libc/lib/arm-linux-gnueabihf \
+	-L$(TARGET)/arm-linux-gnueabihf/libc/usr/lib/arm-linux-gnueabihf
 
 # Random stuff
 MSG_EMPTYLINE = "" 
