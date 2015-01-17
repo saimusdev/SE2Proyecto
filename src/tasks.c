@@ -14,9 +14,6 @@ Author: Simon Ortego Parra
 #include "tasks.h"
 #include "servers.h"
 
-#define MILLIS_IN_ONE_SEC 1000
-#define NANOS_IN_MILLIS 1000000
-
 void periodic_task(void *task)
 {
     int task_id;
@@ -34,10 +31,10 @@ void periodic_task(void *task)
     period.tv_sec = ((task_parameters *) task) -> period / MILLIS_IN_ONE_SEC;
     period.tv_nsec = (((task_parameters *) task) -> period % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-    printf("task#%d: started...\n", task_id);
+    printf("task #%d: started\n", task_id);
 
     if (clock_gettime (CLOCK_MONOTONIC, &next) != 0) {
-        fprintf(stderr, "task#%d: periodic_task(): failed to get the current time", task_id);
+        fprintf(stderr, "task #%d: periodic_task(): failed to get the current time", task_id);
         perror(NULL);
         return;
     }
@@ -54,19 +51,19 @@ void periodic_task(void *task)
 void t1_task_body(struct timespec comp_time)
 {
     delay_ms(comp_time); /* doing stuff */ 
-    server1_func_1();
+    server1_func_1(1);
 }
 
 void t2_task_body(struct timespec comp_time)
 {
     delay_ms(comp_time); /* doing stuff */ 
-    server2_func_1();
+    server2_func_1(2);
 }
 
 void t3_task_body(struct timespec comp_time)
 {
-    server2_func_2();
+    server2_func_2(3);
     delay_ms(comp_time); /* doing stuff */ 
-    server1_func_2();
+    server1_func_2(3);
 }
 
