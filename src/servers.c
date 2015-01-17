@@ -22,8 +22,6 @@ pthread_mutex_t s11_mutex, s12_mutex,
 
 void create_servers (void) 
 {
-	printf("creating servers\n");
-
 	/* server 1 - function 1 */
 	s11_comp_time.tv_sec = S11_COMP_TIME / MILLIS_IN_ONE_SEC;
     s11_comp_time.tv_nsec = (S11_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
