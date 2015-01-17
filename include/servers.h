@@ -6,8 +6,8 @@ Author: Simon Ortego Parra
 
 *******************************************************************************/
 
-#ifndef _SERVERS_H
-#define _SERVERS_H
+#ifndef SERVERS_H
+#define SERVERS_H
 
 void create_servers (void);
 
@@ -28,4 +28,4 @@ void server2_func_1 (unsigned char task_id);
 void server2_func_2 (unsigned char task_id);
 
 
-#endif /* _SERVERS_H */
+#endif /* SERVERS_H */

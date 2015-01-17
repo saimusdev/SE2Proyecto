@@ -14,7 +14,7 @@ void delay_ms (struct timespec ms)
 {
 	struct timespec now, end;
 
-    clock_gettime(CLOCK_REALTIME, &now);
+	clock_gettime(CLOCK_REALTIME, &now);
     
     end = tsAdd(now, ms);
 

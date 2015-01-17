@@ -6,19 +6,19 @@ Author: Simon Ortego Parra
 
 *******************************************************************************/
 
-#ifndef _TASKS_H
-#define _TASKS_H
+#ifndef TASKS_H
+#define TASKS_H
 
-
-void periodic_task(void *parameters);
-
-typedef struct task_parameters {
+typedef struct task_params {
     int task_id, 
     	period,	
 		computation_time;
     void (*task_body) (struct timespec);
-} task_parameters;
+} task_params;
 
+void periodic_task(void *parameters);
+
+void create_tasks (pthread_attr_t *thread_attr, task_params *params);
 
 #define NUM_TASKS 3
 
@@ -50,4 +50,4 @@ void t2_task_body(struct timespec comp_time);
 void t3_task_body(struct timespec comp_time);
 
 
-#endif /* _TASKS_H */
+#endif /* TASKS_H */
