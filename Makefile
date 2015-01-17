@@ -15,7 +15,8 @@ DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 # Compiler object files 
 OBJDIR := $(CURDIR)/obj
 OBJS := \
-	$(OBJDIR)/calc.o \
+	$(OBJDIR)/ts_util.o \
+	$(OBJDIR)/delay.o \
 	$(OBJDIR)/tasks.o \
 	$(OBJDIR)/servers.o \
 	$(OBJDIR)/main.o
