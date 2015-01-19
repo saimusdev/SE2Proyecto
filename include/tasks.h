@@ -16,6 +16,11 @@ typedef struct task_params {
     void (*task_body) (struct timespec);
 } task_params;
 
+typedef struct task_event {
+    int id;
+    struct timespec timestamp;
+} task_event;
+
 void periodic_task(void *parameters);
 
 void create_tasks (pthread_attr_t *thread_attr, task_params *params);

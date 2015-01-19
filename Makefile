@@ -25,7 +25,8 @@ OBJS := \
 LIBS = -lrt -lpthread
 
 # Compiler options
-CFLAGS = -Wall
+CFLAGS = -Wall \
+	-DDEBUG
 
 # Includes
 IFLAGS	= \

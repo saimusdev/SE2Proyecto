@@ -42,7 +42,9 @@ void periodic_task(void *task)
         return;
     }
 
-    for (;;) {
+    // for (;;) {
+    int i, num_iter;
+    for (i = 0, num_iter = 5; i < num_iter; i++) {
         task_body(comp_time);
         next = tsAdd(next, period) ;
         clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0) ;
@@ -105,6 +107,9 @@ void create_tasks (pthread_attr_t *thread_attr, task_params *params)
         params[i].computation_time = tasks_comp_time[i];
         params[i].task_body = tasks_body[i];
         set_threads_sched(&thread_attr[i], tasks_priority[i], SCHED_FIFO);
+#ifdef DEBUG
+        printf("task#%d: params set\n", i+1);
+#endif
     }
 }
 

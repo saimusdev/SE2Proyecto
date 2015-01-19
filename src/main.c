@@ -23,14 +23,23 @@ int main (void)
 
     
     /* Set the parameters for the tasks (including thread attributes) */
+#ifdef DEBUG
+        printf("create tasks\n");
+#endif
     create_tasks(thread_attributes, params);
 
+#ifdef DEBUG
+    printf("create servers\n");
+#endif
     /* Create the servers, which the tasks make use of */
     create_servers();
 
     /* Create one independent thread for each task */
     int i;
     for (i = 0; i < NUM_TASKS; i++) {
+#ifdef DEBUG
+        printf("task#%d: params set\n", i);
+#endif
         if (pthread_create(&threads[i], &thread_attributes[i], (void *)periodic_task, &params[i]) != 0) {
             fprintf(stderr, "pthread_create(): failed to create thread#%d", i);
             perror(NULL);
