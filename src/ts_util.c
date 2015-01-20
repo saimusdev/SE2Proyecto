@@ -8,7 +8,8 @@ Author: Alex Measday
 *******************************************************************************/
 
 #include  <time.h>
-
+#include "ts_util.h"
+        
 #ifdef DEBUG
 #include  <stdio.h>         
 #include  <string.h>         
@@ -51,7 +52,8 @@ int  tsCompare (struct  timespec  time1, struct  timespec  time2)
 
 #ifdef DEBUG
 struct  timespec  tsSubtract (struct  timespec  time1, struct  timespec  time2)
-{    /* Local variables.  */
+{   
+/* Local variables.  */
     struct  timespec  result ;
 
 /* Subtract the second time from the first.  */
@@ -74,7 +76,8 @@ struct  timespec  tsSubtract (struct  timespec  time1, struct  timespec  time2)
 }
 
 const  char  *tsShow (struct  timespec  binaryTime, bool  inLocal, const  char  *format)
-{    /* Local variables.  */
+{    
+/* Local variables.  */
     struct  tm  calendarTime ;
 #define  MAX_TIMES  4
     static  char  asciiTime[MAX_TIMES][64] ;
@@ -103,5 +106,24 @@ const  char  *tsShow (struct  timespec  binaryTime, bool  inLocal, const  char  
     return (asciiTime[current]) ;
 
 }
+
+time_t tsConvertToMs (struct  timespec  time)
+{
+/* Local variables.  */
+    time_t result ;
+    
+    result = 0;
+     if (time.tv_sec != 0) {
+        result += time.tv_sec / MILLIS_IN_ONE_SEC;
+     }
+     if (time.tv_nsec != 0) {
+        result += time.tv_nsec / NANOS_IN_MILLIS;
+     }
+
+    return result ;
+
+}
+
+
 #endif
 

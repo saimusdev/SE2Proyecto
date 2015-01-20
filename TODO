@@ -1,0 +1,9 @@
+- Base branch with basic code
+  + Take timestamps at specific (important) events
+  + At the end, be able to process all the timing info
+  
+- Branches with specific code
+  + delay/noPriorityInherit
+  + delay/priorityCeiling
+  + timer/noPriorityInherit
+  + timer/priorityCeiling

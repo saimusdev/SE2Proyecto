@@ -21,6 +21,8 @@ struct  timespec tsAdd (struct timespec time1, struct timespec time2);
 
 int  tsCompare (struct timespec time1, struct timespec time2);
 
+time_t tsConvertToMs (struct  timespec  time);
+
 #ifdef DEBUG 
 struct  timespec  tsSubtract (struct timespec time1, struct timespec time2);
 

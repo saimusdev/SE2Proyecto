@@ -1,4 +1,4 @@
-PROJECT = se2proy
+PROJECT := se2proy
 
 # Toolchain and binaries used
 PREFIX := /usr/local/linaro/arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
@@ -6,14 +6,14 @@ CC := $(PREFIX)gcc
 LD := $(PREFIX)gcc
 
 # Search directory for source code
-vpath %.c $(CURDIR)/src
+vpath %.c src
 
 # Dependencies
-INCLUDEDIR := $(CURDIR)/include
+INCLUDEDIR := include
 DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 
 # Compiler object files 
-OBJDIR := $(CURDIR)/obj
+OBJDIR := obj
 OBJS := \
 	$(OBJDIR)/ts_util.o \
 	$(OBJDIR)/delay.o \
@@ -22,31 +22,30 @@ OBJS := \
 	$(OBJDIR)/main.o
 
 # Libraries
-LIBS = -lrt -lpthread
+LIBS := -lrt -lpthread
 
 # Compiler options
-CFLAGS = -Wall \
-	-DDEBUG
+CFLAGS := -Wall -DDEBUG
 
 # Includes
-IFLAGS	= \
+IFLAGS	:= \
 	-I$(TARGET)/arm-linux-gnueabihf/libc/usr/include \
 	-I. \
 	-I$(INCLUDEDIR)
 
 # Linker options
-LDFLAGS	= \
+LDFLAGS	:= \
 	-static \
 	-L$(TARGET)/arm-linux-gnueabihf/libc/lib/arm-linux-gnueabihf \
 	-L$(TARGET)/arm-linux-gnueabihf/libc/usr/lib/arm-linux-gnueabihf
 
 # Random stuff
-MSG_EMPTYLINE = "" 
-MSG_COMPILING = ---COMPILE--- 
-MSG_LINKING = ---LINK--- 
-MSG_CLEANING = ---CLEAN--- 
-MSG_SUCCESS = ---SUCCESS--- 
-RM = rm -f
+MSG_EMPTYLINE := "" 
+MSG_COMPILING := ---COMPILE--- 
+MSG_LINKING := ---LINK--- 
+MSG_CLEANING := ---CLEAN--- 
+MSG_SUCCESS := ---SUCCESS--- 
+RM := rm -f
 
 ##################################################################
 
