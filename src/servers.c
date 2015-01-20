@@ -11,6 +11,7 @@ Author: Simon Ortego Parra
 #include <pthread.h>
 
 #include "ts_util.h"
+#include "events.h"
 #include "calc.h"
 #include "servers.h"
 
@@ -56,8 +57,10 @@ void create_servers (void)
 }
 
 void server_function (int server_id, int function_id, 
-		struct timespec computation_time, pthread_mutex_t mutex, int task_id) 
+		struct timespec computation_time, pthread_mutex_t mutex, int task_id, events_history *history) 
 {
+    struct timespec timestamp;
+
 #ifdef DEBUG
 	printf("T%d @ S%d%d: enters\n", server_id, function_id, task_id);
 #endif
@@ -69,10 +72,13 @@ void server_function (int server_id, int function_id,
 	pthread_mutex_lock(&mutex);
 
 	/* --- Critical Section ----- */
+    clock_gettime(CLOCK_REALTIME, &timestamp);   
+	add_event(ENTER_CS, timestamp, history);
 #ifdef DEBUG
 	printf("T%d @ S%d%d: aquires mutex. enters cs\n", server_id, function_id, task_id);
 #endif
 	calc(computation_time);
+	add_event(EXIT_CS, timestamp, history);
 #ifdef DEBUG
 	printf("T%d @ S%d%d: exits cs\n", server_id, function_id, task_id);
 #endif
@@ -85,23 +91,22 @@ void server_function (int server_id, int function_id,
 	pthread_mutex_unlock(&mutex);	
 }
 
-void server1_func_1 (int task_id) 
+void server1_func_1 (int task_id, events_history *history) 
 {	
-	server_function (1, 1, s11_comp_time, s11_mutex, task_id);
+	server_function (1, 1, s11_comp_time, s11_mutex, task_id, history);
 }
 
-void server1_func_2 (int task_id) 
+void server1_func_2 (int task_id, events_history *history) 
 {	
-	server_function (1, 2, s12_comp_time, s12_mutex, task_id);
+	server_function (1, 2, s12_comp_time, s12_mutex, task_id, history);
 }
 
-void server2_func_1 (int task_id) 
+void server2_func_1 (int task_id, events_history *history) 
 {	
-	server_function (2, 2, s21_comp_time, s21_mutex, task_id);
+	server_function (2, 1, s21_comp_time, s21_mutex, task_id, history);
 }
 
-void server2_func_2 (int task_id) 
+void server2_func_2 (int task_id, events_history *history) 
 {	
-	server_function (2, 2, s22_comp_time, s22_mutex, task_id);
+	server_function (2, 2, s22_comp_time, s22_mutex, task_id, history);
 }
-

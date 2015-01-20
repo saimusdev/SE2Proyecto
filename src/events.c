@@ -13,10 +13,10 @@ Author: Simon Ortego Parra
 #include "ts_util.h"
 
 
-event_history *create_event_history (int task_id)
+events_history *create_events_history (int task_id)
 {
-	event_history *new_history;
-	new_history = malloc(sizeof(event_history));
+	events_history *new_history;
+	new_history = malloc(sizeof(events_history));
 	if (new_history != NULL) {
 		new_history->task_id = task_id;
 		new_history->first_event = NULL;
@@ -25,7 +25,7 @@ event_history *create_event_history (int task_id)
 	return new_history;
 }
 
-void clear_history (event_history *history)
+void clear_history (events_history *history)
 {
 	event *current, *next;
 	for(current = history->first_event; current != NULL; current = next) {
@@ -35,7 +35,7 @@ void clear_history (event_history *history)
 	free(history);
 }
 
-void add_event (int event_id, struct timespec timestamp, event_history *history)
+void add_event (int event_id, struct timespec timestamp, events_history *history)
 {
 	event *new_event;
 	new_event = malloc(sizeof(event));
@@ -57,19 +57,18 @@ void add_event (int event_id, struct timespec timestamp, event_history *history)
 	}
 }
 
-void print_events (event_history *history)
+void print_events (events_history *history)
 {
 	event *current;
 	for(current = history->first_event; current != NULL; current = current->next_event) {
 		switch(current->event_id) {
 			case ENTER_CS:
-				printf("[%ld] T%d: enters cs", tsConvertToMs(current->timestamp), history->task_id);
+				printf("[%ld] T%d: enters cs\n", tsConvertToMs(current->timestamp), history->task_id);
 				break;
 			case EXIT_CS:
-				printf("[%ld] T%d: enters cs", tsConvertToMs(current->timestamp), history->task_id);
+				printf("[%ld] T%d: exits cs\n", tsConvertToMs(current->timestamp), history->task_id);
 				break;
 			default:
-
 				break;
 		}
 	}

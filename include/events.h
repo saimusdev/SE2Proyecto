@@ -18,17 +18,17 @@ typedef struct event {
     struct event *next_event;
 } event;
 
-typedef struct event_history {
+typedef struct events_history {
 	int task_id;
 	struct event *first_event, *last_event;
-} event_history;
+} events_history;
 
-event_history *create_event_history (int task_id);
+events_history *create_events_history (int task_id);
 
-void clear_history (event_history *history);
+void clear_history (events_history *history);
 
-void add_event (int event_id, struct timespec timestamp, event_history *history);
+void add_event (int event_id, struct timespec timestamp, events_history *history);
 
-void print_events (event_history *history);
+void print_events (events_history *history);
 
 #endif /* EVENTS_H */

@@ -20,11 +20,13 @@ void set_threads_sched (pthread_attr_t *thread_attr, int priority, int sched_alg
 void periodic_task(void *task)
 {
     int task_id;
-    void (*task_body) (struct timespec);
+    void (*task_body) (struct timespec, events_history *);
+    events_history *history;
     struct timespec next, comp_time, period;
     
     task_id = ((task_params *) task) -> task_id;
     task_body = ((task_params *) task) -> task_body;
+    history = ((task_params *) task) -> history;
 
     /* Fills the TIMESPEC struct from the computation time given in milliseconds */ 
     comp_time.tv_sec = ((task_params *) task) -> computation_time / MILLIS_IN_ONE_SEC;
@@ -46,32 +48,36 @@ void periodic_task(void *task)
 
     // for (;;) {
     int i, num_iter;
-    for (i = 0, num_iter = 5; i < num_iter; i++) {
-        task_body(comp_time);
-        next = tsAdd(next, period) ;
-        clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0) ;
+    for (i = 0, num_iter = 2; i < num_iter; i++) {
+#ifdef DEBUG
+    printf("T%d: activated\n", task_id);
+#endif
+        task_body(comp_time,history);
+        next = tsAdd(next, period);
+        clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
     }
 
-
+    print_events(history);
+    clear_history(history);
 }
 
-void t1_task_body(struct timespec comp_time)
+void t1_task_body(struct timespec comp_time, events_history *history)
 {
     calc(comp_time); /* doing stuff */ 
-    server1_func_1(1);
+    server1_func_1(1,history);
 }
 
-void t2_task_body(struct timespec comp_time)
+void t2_task_body(struct timespec comp_time, events_history *history)
 {
     calc(comp_time); /* doing stuff */ 
-    server2_func_1(2);
+    server2_func_1(2,history);
 }
 
-void t3_task_body(struct timespec comp_time)
+void t3_task_body(struct timespec comp_time, events_history *history)
 {
-    server2_func_2(3);
+    server2_func_2(3,history);
     calc(comp_time); /* doing stuff */ 
-    server1_func_2(3);
+    server1_func_2(3,history);
 }
 
 void create_tasks (pthread_attr_t *thread_attr, task_params *params) 
@@ -108,6 +114,7 @@ void create_tasks (pthread_attr_t *thread_attr, task_params *params)
         params[i].period = tasks_period[i];
         params[i].computation_time = tasks_comp_time[i];
         params[i].task_body = tasks_body[i];
+        params[i].history = create_events_history(i);
         set_threads_sched(&thread_attr[i], tasks_priority[i], SCHED_FIFO);
 #ifdef DEBUG
         printf("T%d: params set\n", i+1);
