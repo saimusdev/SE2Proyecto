@@ -16,7 +16,8 @@ DEPS := $(wildcard $(INCLUDEDIR)/*.h)
 OBJDIR := obj
 OBJS := \
 	$(OBJDIR)/ts_util.o \
-	$(OBJDIR)/delay.o \
+	$(OBJDIR)/calc.o \
+	$(OBJDIR)/events.o \
 	$(OBJDIR)/tasks.o \
 	$(OBJDIR)/servers.o \
 	$(OBJDIR)/main.o

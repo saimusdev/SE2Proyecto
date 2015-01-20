@@ -55,8 +55,8 @@ void create_servers (void)
 #endif
 }
 
-void server_function (unsigned char server_id, unsigned char function_id, 
-		struct timespec computation_time, pthread_mutex_t mutex, unsigned char task_id) 
+void server_function (int server_id, int function_id, 
+		struct timespec computation_time, pthread_mutex_t mutex, int task_id) 
 {
 #ifdef DEBUG
 	printf("T%d @ S%d%d: enters\n", server_id, function_id, task_id);
@@ -85,22 +85,22 @@ void server_function (unsigned char server_id, unsigned char function_id,
 	pthread_mutex_unlock(&mutex);	
 }
 
-void server1_func_1 (unsigned char task_id) 
+void server1_func_1 (int task_id) 
 {	
 	server_function (1, 1, s11_comp_time, s11_mutex, task_id);
 }
 
-void server1_func_2 (unsigned char task_id) 
+void server1_func_2 (int task_id) 
 {	
 	server_function (1, 2, s12_comp_time, s12_mutex, task_id);
 }
 
-void server2_func_1 (unsigned char task_id) 
+void server2_func_1 (int task_id) 
 {	
 	server_function (2, 2, s21_comp_time, s21_mutex, task_id);
 }
 
-void server2_func_2 (unsigned char task_id) 
+void server2_func_2 (int task_id) 
 {	
 	server_function (2, 2, s22_comp_time, s22_mutex, task_id);
 }
