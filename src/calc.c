@@ -11,7 +11,7 @@ Author: Simon Ortego Parra
 #include "ts_util.h"
 
 
-void delay_ms (struct timespec ms) 
+void calc (struct timespec ms) 
 {
     struct timespec now, end;
 
@@ -23,9 +23,9 @@ void delay_ms (struct timespec ms)
     }
 
 #ifdef DEBUG 
-    clock_gettime (CLOCK_THREAD_CPUTIME_ID, &now);
-    printf("delay call: %ld ns\n", tsConvertToMs(now));
-    printf("time elapsed: %ld ns\n", tsConvertToMs(now));
+    //clock_gettime (CLOCK_THREAD_CPUTIME_ID, &now);
+    //printf("delay call: %ld ns\n", tsConvertToMs(ms));
+    //printf("time elapsed: %ld ns\n", tsConvertToMs(now));
 #endif
 
 }

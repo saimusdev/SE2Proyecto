@@ -34,10 +34,12 @@ void periodic_task(void *task)
     period.tv_sec = ((task_params *) task) -> period / MILLIS_IN_ONE_SEC;
     period.tv_nsec = (((task_params *) task) -> period % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-    printf("task #%d: started\n", task_id);
+#ifdef DEBUG
+    printf("T%d: started\n", task_id);
+#endif
 
     if (clock_gettime (CLOCK_MONOTONIC, &next) != 0) {
-        fprintf(stderr, "task #%d: periodic_task(): failed to get the current time", task_id);
+        fprintf(stderr, "T%d: periodic_task(): failed to get the current time", task_id);
         perror(NULL);
         return;
     }
@@ -55,20 +57,20 @@ void periodic_task(void *task)
 
 void t1_task_body(struct timespec comp_time)
 {
-    delay_ms(comp_time); /* doing stuff */ 
+    calc(comp_time); /* doing stuff */ 
     server1_func_1(1);
 }
 
 void t2_task_body(struct timespec comp_time)
 {
-    delay_ms(comp_time); /* doing stuff */ 
+    calc(comp_time); /* doing stuff */ 
     server2_func_1(2);
 }
 
 void t3_task_body(struct timespec comp_time)
 {
     server2_func_2(3);
-    delay_ms(comp_time); /* doing stuff */ 
+    calc(comp_time); /* doing stuff */ 
     server1_func_2(3);
 }
 
@@ -108,7 +110,7 @@ void create_tasks (pthread_attr_t *thread_attr, task_params *params)
         params[i].task_body = tasks_body[i];
         set_threads_sched(&thread_attr[i], tasks_priority[i], SCHED_FIFO);
 #ifdef DEBUG
-        printf("task#%d: params set\n", i+1);
+        printf("T%d: params set\n", i+1);
 #endif
     }
 }
