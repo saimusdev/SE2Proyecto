@@ -72,16 +72,16 @@ void print_event (event event, int task_id)
 
 	switch(event.type) {
 		case TASK_ACTIVATION:
-			printf("[%ld.%ld s] T%d: activates\n", millis[0], millis[1], task_id);
+			printf("[%2ld.%ld ms ] T%d: activates\n", millis[0], millis[1], task_id);
 			break;
 		case TASK_COMPLETION:
-			printf("[%ld.%ld] T%d: completes\n", millis[0], millis[1], task_id); 
+			printf("[%2ld.%ld ms ] T%d: completes\n", millis[0], millis[1], task_id); 
 			break;
 		case CS_ENTRY:
-			printf("[%ld.%ld] T%d: enters cs\n", millis[0], millis[1], task_id); 
+			printf("[%2ld.%ld ms ] T%d: enters cs\n", millis[0], millis[1], task_id); 
 			break;
 		case CS_EXIT:
-			printf("[%ld.%ld] T%d: exits cs\n",  millis[0], millis[1], task_id);
+			printf("[%2ld.%ld ms ] T%d: exits cs\n",  millis[0], millis[1], task_id);
 			break;
 		default:
 			break;

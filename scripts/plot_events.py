@@ -1,34 +1,28 @@
+import random
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import pandas
 
-def update_line(num, data, line):
-    line.set_data(data[...,:num])
-    return line,
+categories = list('ABCD')
 
-fig1 = plt.figure()
+# map categories to y-values
+cat_dict = dict(zip(categories, range(1, len(categories)+1)))
 
-data = np.random.rand(2, 25)
-l, = plt.plot([], [], 'r-')
-plt.xlim(0, 1)
-plt.ylim(0, 1)
-plt.xlabel('x')
-plt.title('test')
-line_ani = animation.FuncAnimation(fig1, update_line, 25, fargs=(data, l),
-    interval=50, blit=True)
-#line_ani.save('lines.mp4')
+# map y-values to categories
+val_dict = dict(zip(range(1, len(categories)+1), categories))
 
-fig2 = plt.figure()
+# setup the dataframe
+dates = pandas.DatetimeIndex(freq='20T', start='2012-05-05 13:00', end='2012-05-05 18:59')
+values = [random.choice(categories) for _ in range(len(dates))]
+df = pandas.DataFrame(data=values, index=dates, columns=['category'])
 
-x = np.arange(-9, 10)
-y = np.arange(-9, 10).reshape(-1, 1)
-base = np.hypot(x, y)
-ims = []
-for add in np.arange(15):
-    ims.append((plt.pcolor(x, y, base + add, norm=plt.Normalize(0, 30)),))
+# determing the y-values from categories
+df['plotval'] = df['category'].apply(cat_dict.get)
 
-im_ani = animation.ArtistAnimation(fig2, ims, interval=50, repeat_delay=3000,
-    blit=True)
-#im_ani.save('im.mp4', metadata={'artist':'Guido'})
+# make the plot
+fig, ax = plt.subplots()
+df['plotval'].plot(ax=ax, style='ks')
+ax.margins(0.2)
 
-plt.show()
+# format y-ticks look up the categories
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, pos: val_dict.get(x)))
