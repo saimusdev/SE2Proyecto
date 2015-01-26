@@ -98,8 +98,8 @@ $(PROJECT): $(OBJS)
 
 # Compiler call
 $(OBJS): $(OBJDIR)/%.o: %.c $(DEPS)
-	$(MKDIR) $(OBJDIR)
 	@echo $(MSG_COMPILING) $<
+	$(MKDIR) $(OBJDIR)
 	$(CC) -c -o $@ $< $(CFLAGS) $(IFLAGS)
 
 # Clean

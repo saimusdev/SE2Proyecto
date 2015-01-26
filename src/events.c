@@ -7,11 +7,13 @@ Author: Simon Ortego Parra
 *******************************************************************************/
 
 #include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 #include "events.h"
 #include "ts_util.h"
 
+extern int max_sched_priority;
 
 events_history *create_events_history (int task_id)
 {
@@ -35,9 +37,12 @@ void clear_history (events_history *history)
 	free(history);
 }
 
-void add_event (int type, struct timespec timestamp, events_history *history)
+void add_event (int type, events_history *history)
 {
+    struct timespec timestamp;
 	event *new_event;
+
+   	clock_gettime(CLOCK_REALTIME, &timestamp);   
 	new_event = malloc(sizeof(event));
 
 	if (new_event != NULL) {
@@ -56,30 +61,27 @@ void add_event (int type, struct timespec timestamp, events_history *history)
 		}
 		history->last_event = new_event;
 	} else {
-        fprintf(stderr, "add_event(): could not allocate memory for new event");
+        fprintf(stderr, "add_event(): could not allocate memory for new event: ");
 	}
 }
 
 void print_event (event event, int task_id)
 {
+	time_t millis[2];
+	tsConvertToMs (event.timestamp, &millis[0], &millis[1]);
+
 	switch(event.type) {
-		case ACTIVATES:
-			printf("[%ld.%ld] T%d: activates\n", 
-				event.timestamp.tv_sec, 
-				event.timestamp.tv_nsec,
-				task_id);
+		case TASK_ACTIVATION:
+			printf("[%ld.%ld s] T%d: activates\n", millis[0], millis[1], task_id);
 			break;
-		case ENTER_CS:
-			printf("[%ld.%ld] T%d: enters cs\n", 
-				event.timestamp.tv_sec, 
-				event.timestamp.tv_nsec,
-				task_id);
+		case TASK_COMPLETION:
+			printf("[%ld.%ld] T%d: completes\n", millis[0], millis[1], task_id); 
 			break;
-		case EXIT_CS:
-			printf("[%ld.%ld] T%d: exits cs\n", 
-				event.timestamp.tv_sec, 
-				event.timestamp.tv_nsec,
-				task_id);
+		case CS_ENTRY:
+			printf("[%ld.%ld] T%d: enters cs\n", millis[0], millis[1], task_id); 
+			break;
+		case CS_EXIT:
+			printf("[%ld.%ld] T%d: exits cs\n",  millis[0], millis[1], task_id);
 			break;
 		default:
 			break;

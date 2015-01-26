@@ -50,21 +50,18 @@ int tsCompare (struct timespec time1, struct timespec time2)
 
 }
 
-time_t tsConvertToMs (struct timespec time)
+void tsConvertToMs (struct timespec time, time_t *millis, time_t *millis_fract)
 {
 /* Local variables  */
-    long double result;
 
-    result = 0;
-    if (time.tv_sec != 0) {
-        result += time.tv_sec * MILLIS_IN_ONE_SEC;
+    if(time.tv_sec != 0) {
+        *millis = time.tv_sec * MILLIS_IN_ONE_SEC;
+    } else {
+        *millis = 0;
     }
-    if (time.tv_nsec != 0) {
-        result += time.tv_nsec / NANOS_IN_MILLIS; 
+    if(time.tv_nsec != 0) {
+        *millis += time.tv_nsec / NANOS_IN_MILLIS;
+        *millis_fract = time.tv_nsec % NANOS_IN_MILLIS;
     }
-
-    return (time_t) result;
-
 }
-
 

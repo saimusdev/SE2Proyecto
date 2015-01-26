@@ -21,6 +21,8 @@ static struct timespec s11_comp_time, s12_comp_time,
 pthread_mutex_t s11_mutex, s12_mutex,
 				s21_mutex, s22_mutex;
 
+extern void add_task_event (int event_id, events_history *history);
+
 void create_servers (void) 
 {	
 	/* server 1 - function 1 */
@@ -59,8 +61,6 @@ void create_servers (void)
 void server_function (int server_id, int function_id, 
 		struct timespec computation_time, pthread_mutex_t mutex, int task_id, events_history *history) 
 {
-    struct timespec timestamp;
-
 #ifdef DEBUG
 	printf("T%d @ S%d%d: enters\n", server_id, function_id, task_id);
 #endif
@@ -72,14 +72,12 @@ void server_function (int server_id, int function_id,
 	pthread_mutex_lock(&mutex);
 
 	/* --- Critical Section ----- */
-    clock_gettime(CLOCK_REALTIME, &timestamp);   
-	add_event(ENTER_CS, timestamp, history);
+	add_task_event(CS_ENTRY, history);
 #ifdef DEBUG
 	printf("T%d @ S%d%d: aquires mutex. enters cs\n", server_id, function_id, task_id);
 #endif
 	calc(computation_time);
-    clock_gettime(CLOCK_REALTIME, &timestamp);   
-	add_event(EXIT_CS, timestamp, history);
+	add_task_event(CS_EXIT, history);
 #ifdef DEBUG
 	printf("T%d @ S%d%d: exits cs\n", server_id, function_id, task_id);
 #endif

@@ -15,42 +15,48 @@ typedef struct task_params {
     int task_id, 
     	period,	
 		computation_time;
+	pthread_t *thread;
  	events_history *history;
     void (*task_body) (struct timespec, events_history *);
 } task_params;
 
 void periodic_task(void *parameters);
 
-void create_tasks (pthread_attr_t *thread_attr, task_params *params);
+void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params *params);
 
-#define NUM_TASKS 3
 #define NUM_TASK_ITERATIONS 2
 
-/* Task 1
+/*
+SCHED_FIFO min/max priority     : 1/99
+SCHED_RR min/max priority       : 1/99
+SCHED_OTHER min/max priority    : 0/0
+*/
+
+#define FIFO_SCHEDULING YES
+//#define ROUND_ROBIN_SCHEDULING YES
+#define MIN_SCHED_FIFO_PRIORITY 1
+#define MAX_SCHED_FIFO_PRIORITY 99
+#define MIN_SCHED_RR_PRIORITY 1
+#define MAX_SCHED_RR_PRIORITY 99
+
+#define NUM_TASKS 3
+
+/* Task 1 */
 #define T1_PRIORITY 5
 #define T1_COMP_TIME 10
-#define T1_PERIOD 100  */
-#define T1_PRIORITY 5
-#define T1_COMP_TIME 100
-#define T1_PERIOD 1000
+#define T1_PERIOD 100
 void t1_task_body(struct timespec comp_time, events_history *history);
 
-/* Task 1
+/* Task 2 */
 #define T2_PRIORITY 3
 #define T2_COMP_TIME 60
-#define T2_PERIOD 200  */
-#define T2_PRIORITY 3
-#define T2_COMP_TIME 600
-#define T2_PERIOD 2000
+#define T2_PERIOD 200
 void t2_task_body(struct timespec comp_time, events_history *history);
 
-/* Task 1
+/* Task 3 */
 #define T3_PRIORITY 1
 #define T3_COMP_TIME 30
-#define T3_PERIOD 400  */
-#define T3_PRIORITY 1
-#define T3_COMP_TIME 300
-#define T3_PERIOD 4000 
+#define T3_PERIOD 400 
 void t3_task_body(struct timespec comp_time, events_history *history);
 
 

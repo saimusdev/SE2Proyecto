@@ -17,6 +17,6 @@ struct timespec tsAdd (struct timespec time1, struct timespec time2);
 
 int tsCompare (struct timespec time1, struct timespec time2);
 
-time_t tsConvertToMs (struct timespec time);
+void tsConvertToMs (struct timespec time, time_t *millis, time_t *millis_fract);
 
 #endif /* TS_UTIL_H */
