@@ -78,6 +78,7 @@ void server_function (int server_id, int function_id,
 	printf("T%d @ S%d%d: aquires mutex. enters cs\n", server_id, function_id, task_id);
 #endif
 	calc(computation_time);
+    clock_gettime(CLOCK_REALTIME, &timestamp);   
 	add_event(EXIT_CS, timestamp, history);
 #ifdef DEBUG
 	printf("T%d @ S%d%d: exits cs\n", server_id, function_id, task_id);

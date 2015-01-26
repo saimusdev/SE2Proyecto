@@ -35,15 +35,18 @@ void clear_history (events_history *history)
 	free(history);
 }
 
-void add_event (int event_id, struct timespec timestamp, events_history *history)
+void add_event (int type, struct timespec timestamp, events_history *history)
 {
 	event *new_event;
 	new_event = malloc(sizeof(event));
+
 	if (new_event != NULL) {
 		/* if could allocate memory for the new event */
-		new_event->event_id = event_id;
-		new_event->timestamp = timestamp;
+		new_event->type = type;
+		new_event->timestamp.tv_sec = timestamp.tv_sec;
+		new_event->timestamp.tv_nsec = timestamp.tv_nsec;
 		new_event->next_event = NULL;
+
 		if (history->last_event != NULL) {
 			/* if history is not empty */
 			history->last_event->next_event = new_event;	
@@ -57,20 +60,36 @@ void add_event (int event_id, struct timespec timestamp, events_history *history
 	}
 }
 
-void print_events (events_history *history)
+void print_event (event event, int task_id)
 {
-	event *current;
-	for(current = history->first_event; current != NULL; current = current->next_event) {
-		switch(current->event_id) {
-			case ENTER_CS:
-				printf("[%ld] T%d: enters cs\n", tsConvertToMs(current->timestamp), history->task_id);
-				break;
-			case EXIT_CS:
-				printf("[%ld] T%d: exits cs\n", tsConvertToMs(current->timestamp), history->task_id);
-				break;
-			default:
-				break;
-		}
+	switch(event.type) {
+		case ACTIVATES:
+			printf("[%ld.%ld] T%d: activates\n", 
+				event.timestamp.tv_sec, 
+				event.timestamp.tv_nsec,
+				task_id);
+			break;
+		case ENTER_CS:
+			printf("[%ld.%ld] T%d: enters cs\n", 
+				event.timestamp.tv_sec, 
+				event.timestamp.tv_nsec,
+				task_id);
+			break;
+		case EXIT_CS:
+			printf("[%ld.%ld] T%d: exits cs\n", 
+				event.timestamp.tv_sec, 
+				event.timestamp.tv_nsec,
+				task_id);
+			break;
+		default:
+			break;
 	}
 }
 
+void print_events (events_history history)
+{
+	event *current;
+	for(current = history.first_event; current != NULL; current = current->next_event) {
+		print_event(*current, history.task_id);
+	}
+}

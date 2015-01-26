@@ -24,6 +24,7 @@ void periodic_task(void *parameters);
 void create_tasks (pthread_attr_t *thread_attr, task_params *params);
 
 #define NUM_TASKS 3
+#define NUM_TASK_ITERATIONS 2
 
 /* Task 1
 #define T1_PRIORITY 5

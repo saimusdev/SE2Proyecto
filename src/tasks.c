@@ -47,18 +47,20 @@ void periodic_task(void *task)
     }
 
     // for (;;) {
-    int i, num_iter;
-    for (i = 0, num_iter = 2; i < num_iter; i++) {
+    int i;
+    struct timespec timestamp;
+    for (i = 0; i < NUM_TASK_ITERATIONS; i++) {
 #ifdef DEBUG
     printf("T%d: activated\n", task_id);
 #endif
+        clock_gettime(CLOCK_REALTIME, &timestamp);   
+        add_event(ACTIVATES, timestamp, history);
         task_body(comp_time,history);
         next = tsAdd(next, period);
         clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
     }
 
-    print_events(history);
-    clear_history(history);
+    pthread_exit(task);
 }
 
 void t1_task_body(struct timespec comp_time, events_history *history)
@@ -142,4 +144,3 @@ void set_threads_sched (pthread_attr_t *thread_attr, int priority, int sched_alg
     pthread_attr_setschedparam(thread_attr, &thread_sched);
 
 }
-
