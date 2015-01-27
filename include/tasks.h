@@ -24,7 +24,7 @@ void periodic_task(void *parameters);
 
 void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params *params);
 
-#define NUM_TASK_ITERATIONS 2
+#define NUM_TASK_ITERATIONS 3
 
 /*
 SCHED_FIFO min/max priority     : 1/99

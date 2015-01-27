@@ -1,0 +1,42 @@
+0.513166 - T0: activates
+10.543916 - T0: enters cs
+110.570291 - T0: exits cs
+110.676666 - T0: completes
+110.697625 - T0: activates
+120.724375 - T0: enters cs
+220.749416 - T0: exits cs
+220.798708 - T0: completes
+220.819125 - T0: activates
+230.845083 - T0: enters cs
+330.870708 - T0: exits cs
+330.929583 - T0: completes
+331.433000 - T1: activates
+391.526041 - T1: enters cs
+691.553083 - T1: exits cs
+691.979541 - T1: completes
+692.1958 - T1: activates
+752.31583 - T1: enters cs
+1052.58833 - T1: exits cs
+1052.126375 - T1: completes
+1052.192166 - T1: activates
+1112.220250 - T1: enters cs
+1412.245958 - T1: exits cs
+1412.294500 - T1: completes
+1412.769041 - T2: activates
+1412.791916 - T2: enters cs
+1712.827041 - T2: exits cs
+1742.855000 - T2: enters cs
+1942.879833 - T2: exits cs
+1942.939000 - T2: completes
+1942.959500 - T2: activates
+1942.979500 - T2: enters cs
+2243.4291 - T2: exits cs
+2273.29750 - T2: enters cs
+2473.55208 - T2: exits cs
+2473.143000 - T2: completes
+2473.164041 - T2: activates
+2473.184250 - T2: enters cs
+2773.210708 - T2: exits cs
+2803.236583 - T2: enters cs
+3003.262208 - T2: exits cs
+3003.337417 - T2: completes
