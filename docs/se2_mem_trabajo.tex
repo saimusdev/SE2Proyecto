@@ -1,0 +1,346 @@
+\documentclass[11pt,spanish]{article}
+
+%----------------------------------------------------------------------------------------
+% Codificación, y usar una fuente similar a la Palatino (y no Latin Modern Roman)
+\usepackage[utf8]{inputenc} % Acentos, etc.
+\usepackage[spanish]{babel} % Castellano
+\usepackage{tgpagella}      % Fuente similar a Palatino
+\usepackage[T1]{fontenc}
+
+%----------------------------------------------------------------------------------------
+% MODIFICAR EL ESTILO DE LAS SECCIONES Y EL ABSTRACT
+\usepackage{titlesec}
+\titleformat{\section}{\bfseries\Large}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\bfseries\large}{\thesubsection.}{0.6em}{}
+\titleformat{\subsubsection}{\bfseries\large}{\thesubsubsection.}{0.6em}{}
+%\newcommand{\sectionbreak}{\clearpage} % Empezar secciones en nueva página
+
+\renewenvironment{abstract}
+ {\small\em
+  \vspace{2mm}
+  \list{}{%
+    \setlength{\leftmargin}{2.5mm}% <- -- -- -- -- - Cambiar márgenes
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+% Incluir Anexos
+\usepackage[title,titletoc,toc]{appendix}
+
+%----------------------------------------------------------------------------------------
+% COLORES 
+\usepackage{xcolor}
+\usepackage{color}
+\newcommand{\termWhite}[1]{\textcolor{white}{\ttfamily{#1}}} % MDFRAMED: shell
+\newcommand{\termGray}[1]{\textcolor[RGB]{175,175,175}{\ttfamily{#1}}} % MDFRAMED: shell
+\newcommand{\termGreen}[1]{\textcolor[RGB]{136,249,57}{\ttfamily{#1}}} % MDFRAMED: shell
+\newcommand{\termPurple}[1]{\textcolor[RGB]{76,80,173}{\ttfamily{#1}}} % MDFRAMED: shell
+\newcommand{\termRed}[1]{\textcolor{red}{\textbf{#1}}}                 % MDFRAMED: important
+
+
+\definecolor{gitkeyword}{RGB}{143,35,92}
+\definecolor{gitstring}{RGB}{218,98,7}
+\definecolor{gitcomment}{RGB}{150,151,149}
+
+%----------------------------------------------------------------------------------------
+% Imagenes: Que se pongan donde yo quiero
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps,.ps,.pdf,.png,.jpg,.jpeg}
+
+%----------------------------------------------------------------------------------------
+% CAJAS DE TEXTO: TERMINAL
+
+\newcommand{\shellRC}{\termGray{a611244@central}> }
+
+\usepackage[framemethod=tikz]{mdframed}
+\mdfdefinestyle{termStyle}{
+    font=\footnotesize\ttfamily,
+    linecolor=black,outerlinewidth=2pt,
+    leftmargin=0pt, rightmargin=0pt,
+    backgroundcolor=black,fontcolor=white,
+    innermargin=2pt, roundcorner=1pt,
+    splittopskip=20pt, splitbottomskip=20pt,
+}
+\newmdenv[style=termStyle]{exa}
+\newenvironment{terminal}
+  {\vspace{0.5em}\begin{exa}}
+  {\end{exa}\vspace{1em}}
+  
+%----------------------------------------------------------------------------------------
+% ALGORITMOS
+
+\usepackage{listings}
+
+% Comando para lstset -> ARM
+\lstdefinestyle{c}{%
+	language=C,%
+	showspaces=false, showtabs=false,%
+	showstringspaces=false,%
+	basicstyle=\scriptsize\ttfamily,%
+	tabsize=3,%
+	breaklines=true,%
+	keywordstyle=\color{gitkeyword}\bfseries,
+	stringstyle=\color{gitstring},
+	commentstyle=\color{gitcomment},
+	morecomment=[s][\color{gitcomment}]{/**}{*/}
+}
+
+% Plain text style listing
+\lstdefinestyle{plain}{%
+	language={},%
+	basicstyle=\footnotesize\ttfamily,%
+	showspaces=false,showtabs=false,showstringspaces=false,%
+	tabsize=3,breaklines=true,%
+	numbers=left, numberstyle=\ttfamily\tiny\color{gray},% 
+	stepnumber=1, numbersep=5pt,%
+}
+  
+%----------------------------------------------------------------------------------------
+% ASPECTOS DEL FORMATO
+\newcommand{\singlelinebreak}{\\[\baselineskip]}
+\newcommand{\multiplelinebreak}[1]{\\[#1\baselineskip]}
+\usepackage{geometry}
+\newgeometry{top=5em}
+\newcommand{\tab}{\indent\hspace{5mm}}
+\newcommand{\brkline}{\leavevmode{\parindent=1em\indent}}
+
+% Cortar lineas en fuente tt
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+  \hyphenchar\font=`\-% allowing hyphenation
+}
+
+\newcommand{\code}[1]{\texttt{\justify #1}}
+
+%----------------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+\AtBeginDocument{
+  \addtocontents{toc}{\footnotesize}
+  %\addtocontents{lof}{\footnotesize}
+}
+\usepackage{tocloft}
+\setlength\cftaftertoctitleskip{0pt}
+\setlength{\cftbeforetoctitleskip}{-0.5em}
+\addto\captionsspanish{\renewcommand\contentsname{}}
+
+%----------------------------------------------------------------------------------------
+% METADATOS DEL PDF Y PDF CLICKEABLE
+\usepackage{hyperref}
+\usepackage{hyperxmp}
+\providecommand\phantomsection{} % Necesario para hyperref
+\usepackage{url}
+
+\newcommand\docsubject{SISTEMAS EMPOTRADOS II}
+\newcommand\doctitle{Trabajo de laboratorio}
+
+\hypersetup{
+	baseurl={611244@unizar.es},
+	pdftitle={\doctitle},
+	pdfauthor={Simón Ortego Parra},
+	pdfsubject={\docsubject. EINA. Unizar},
+	pdfkeywords={},
+	pdfcopyright={Copyright (C) 2014 by Simón Ortego Parra. All rights reserved.},
+	pdfproducer={PDFLatex},
+	pdfcreator={ps2pdf},
+	colorlinks=false
+}
+
+\usepackage{cleveref} % load after hyperref package
+\crefdefaultlabelformat{\textbf{#2#1#3}} % boldface only the number
+
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+
+\crefname{listing}{algoritmo}{algoritmos}
+\Crefname{listing}{Algoritmo}{Algoritmos}
+
+\crefname{section}{sección}{secciones}
+\Crefname{section}{Sección}{Secciones}
+
+\crefname{appendix}{anexo}{anexos}
+\Crefname{appendix}{Anexo}{Anexos}
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+% INICIO DEL DOCUMENTO
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\noindent
+{\huge\bf \docsubject}\multiplelinebreak{1.5}
+{\huge\tt \doctitle}\singlelinebreak
+{\Large\it Simón Ortego Parra}\\
+\rule{\textwidth}{1.5pt}
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section{Descripción del problema}
+Se trata de modelar un programa concurrente con restricciones tiempo real en el cual 
+varias tareas periódicas acceden a unos servidores compartidos con el fin de realizar 
+una sincronización. Los servidores ofrecen una serie de funciones, cada una de ellas 
+es accesible únicamente en exclusión mutua.
+
+Las restricciones de tiempo real implican que las tareas tengan asignadas una serie
+de prioridades, asignadas por urgencia en el cumplimiento de plazos. En principio, una 
+tarea de mayor prioridad no tiene porque verse afectada por tareas de prioridad inferior
+al realizar la compartición de recursos con estas otras. En caso contrario, se provocan
+las denominadas inversiones de prioridad. El análisis de este tipo de situaciones y 
+la garantía del cumplimiento de plazos es el objetivo de este trabajo.
+
+El desarrollo del trabajo se ha realizado sobre un kernel de linux de tiempo real (en
+concreto el patch PREEMPT\_RT) y utilizando la interfaz de programación POSIX.
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section{Desarrollo del algoritmo básico}
+El algoritmo básico del cual partir para más adelante realizar el análisis temporal y de
+cumplimiento de plazos consta de tres partes claramente diferenciadas. Un programa
+principal, en el cual se pone en funcionamiento todo, las tareas periódicas y los 
+servidores de acceso concurrente. Se ha realizado en cada parte una programación lo más 
+genérica posible, con el fin de poder reutilizar el código, y que el algoritmo sea lo más 
+conciso y claro posible. A continuación se examinan cada una de las partes.
+
+\subsection{Tareas periódicas}
+Lo primero a realizar para cada tareas es la inicialización. Ya que se implementan
+sobre la interfaz POSIX, esto además implica establecer los atributos apropiados para los
+hilos (pthreads) que ejecutan el código de cada una de las tareas. En la función
+\code{create\_tasks()} se inicializan todas las tareas con los parámetros (\code{task\_params})
+y los atributos de los \code{pthreads} apropiados.
+
+Las tareas periódicas ejecutan una función específica para cada tipo de tarea, pero 
+el comportamiento temporal y la estructura es para todas la misma. A continuación se 
+observa un extracto de código dónde se puede apreciar la función genérica base de 
+todas tareas (\code{periodic\_task}). El parámetro que se le pasa a la función genérica
+es la dirección de la función que ejecuta cada una de las diferentes tareas.
+
+\begin{lstlisting}[style=c]
+void periodic_task(void *task)
+{
+    int task_id;
+    void (*task_body) (struct timespec, events_history *);
+    events_history *history;
+    struct timespec next, comp_time, period;
+    
+    task_id = ((task_params *) task) -> task_id;
+    task_body = ((task_params *) task) -> task_body;
+    history = ((task_params *) task) -> history;
+
+    /* Fills the TIMESPEC struct from the computation time given in milliseconds */ 
+    comp_time.tv_sec = ((task_params *) task) -> computation_time / MILLIS_IN_ONE_SEC;
+    comp_time.tv_nsec = (((task_params *) task) -> computation_time % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
+
+    /* Fills the TIMESPEC struct from the period value given in milliseconds */ 
+    period.tv_sec = ((task_params *) task) -> period / MILLIS_IN_ONE_SEC;
+    period.tv_nsec = (((task_params *) task) -> period % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
+
+    if (clock_gettime (CLOCK_MONOTONIC, &next) != 0) {
+        fprintf(stderr, "T%d: periodic_task(): failed to get the current time: ", task_id);
+        perror(NULL);
+        return;
+    }
+
+    int i;
+    for (i = 0; i < NUM_TASK_ITERATIONS; i++) {
+        add_task_event(TASK_ACTIVATION, history);
+        task_body(comp_time,history);
+        next = tsAdd(next, period);
+        clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
+        add_task_event(TASK_COMPLETION, history);
+    }
+
+    pthread_exit(task);
+}
+\end{lstlisting}
+
+Una vez realizada la programación del código genérico, tan sólo es necesario realizar la
+función que se le pasa como parámetro a esta función genérica comentada con anterioridad,
+de tal forma que, en el cuerpo de la función genérica cada tarea específica llame a la 
+función que le corresponda. Un ejemplo de las funciones específicas se puede observar
+a continuación para el caso de la tarea 1.
+
+\begin{lstlisting}[style=c]
+void t1_task_body(struct timespec comp_time, events_history *history)
+{
+    calc(comp_time); /* doing stuff */ 
+    server1_func_1(1,history);
+}
+\end{lstlisting}
+
+Lo único que falta por aclarar es que ejecuta cada tarea periódicamente (en el algoritmo
+anterior aparece una llamada a la función \code{calc} que no es más que una simulación
+de la ejecución de un código arbitrario que mantiene a la tarea ocupada durante el tiempo
+que se le pase como parámetro. Esta función se detalla en la siguiente sección.
+
+\subsubsection{Tiempos de cómputo}
+El objetivo de este proyecto es puramente educacional. Esto quiere decir que, con el 
+fin de garantizar unos tiempos de cómputo constantes para cada una de las tareas, y así 
+poder realizar el análisis temporal correctamente, se ha programado una función que 
+realiza una espera activa hasta que haya pasado el tiempo que se le pase
+como parámetro (es importante recalcar lo de espera activa: la tarea no se puede dormir
+ya que supone que se está modelando que la tarea está ejecutando una sección de código 
+que dura exactamente el tiempo de cómputo que se le pasa a la función como parámetro).
+
+\begin{lstlisting}[style=c]
+void calc (struct timespec ms) 
+{
+    struct timespec now, end;
+
+    clock_gettime(CLOCK_REALTIME, &now);   
+    end = tsAdd(now, ms);
+
+    while (tsCompare(now, end) != 1) {
+        clock_gettime(CLOCK_REALTIME, &now);
+    }
+}
+\end{lstlisting}
+
+\subsection{Servidores}
+
+\subsection{Programa principal}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section{Análisis de tiempo real}
+
+\subsection{Recolección de eventos. Temporización}
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section{Entorno de desarrollo}
+
+\subsection{Kernel build: Digital Ocean VM3}
+
+
+\appendix
+\pagebreak
+\section{Ficheros de configuración}
+
+\subsection[Servidor Kerberos maestro: krb1]{Servidor Kerberos maestro: \code{krb1}}\label{app:krb1_conf}
+\subsubsection[/etc/rc.conf.local]{\code{/etc/rc.conf.local}}\label{app:krb1_rc.conf.local}
+\begin{lstlisting}[style=plain]
+
+\end{lstlisting}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     

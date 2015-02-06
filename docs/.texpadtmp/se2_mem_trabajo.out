@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Descripci\363n del problema}{}% 1
+\BOOKMARK [1][-]{section.2}{Desarrollo del algoritmo b\341sico}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Tareas peri\363dicas}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Tiempos de c\363mputo}{subsection.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Servidores}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Programa principal}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{An\341lisis de tiempo real}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Recolecci\363n de eventos. Temporizaci\363n}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Entorno de desarrollo}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Kernel build: Digital Ocean VM3}{section.4}% 10
+\BOOKMARK [1][-]{appendix.Alph1}{Ficheros de configuraci\363n}{}% 11
+\BOOKMARK [2][-]{subsection.Alph1.1}{Servidor Kerberos maestro: krb1}{appendix.Alph1}% 12
+\BOOKMARK [3][-]{subsubsection.Alph1.1.1}{/etc/rc.conf.local}{subsection.Alph1.1}% 13
