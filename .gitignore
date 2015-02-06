@@ -2,6 +2,5 @@
 .build-system
 kernel-rt
 se2proy
-*.pdf
 *.o
 libc_include
