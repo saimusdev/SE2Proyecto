@@ -1,5 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Configuraci\363n de red}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Configuraci\363n de red para m\341quinas Ubuntu}{section.1}% 2
-\BOOKMARK [1][-]{appendix.Alph1}{Ficheros de configuraci\363n}{}% 3
-\BOOKMARK [2][-]{subsection.Alph1.1}{Servidor Kerberos maestro: krb1}{appendix.Alph1}% 4
-\BOOKMARK [3][-]{subsubsection.Alph1.1.1}{/etc/rc.conf.local}{subsection.Alph1.1}% 5
