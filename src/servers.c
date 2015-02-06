@@ -18,8 +18,7 @@ Author: Simon Ortego Parra
 static struct timespec s11_comp_time, s12_comp_time,
 					   s21_comp_time, s22_comp_time;
 
-pthread_mutex_t s11_mutex, s12_mutex,
-				s21_mutex, s22_mutex;
+pthread_mutex_t s1_mutex, s2_mutex;
 
 extern void add_task_event (int event_id, events_history *history);
 
@@ -28,7 +27,6 @@ void create_servers (void)
 	/* server 1 - function 1 */
 	s11_comp_time.tv_sec = S11_COMP_TIME / MILLIS_IN_ONE_SEC;
     s11_comp_time.tv_nsec = (S11_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
-    pthread_mutex_init(&s11_mutex, NULL);
 
 #ifdef DEBUG
         printf("S11 params set\n");
@@ -36,7 +34,7 @@ void create_servers (void)
     /* server 1 - function 2 */
     s12_comp_time.tv_sec = S12_COMP_TIME / MILLIS_IN_ONE_SEC;
     s12_comp_time.tv_nsec = (S12_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
-	pthread_mutex_init(&s11_mutex, NULL);
+    pthread_mutex_init(&s1_mutex, NULL);
 
 #ifdef DEBUG
         printf("S12 params set\n");
@@ -44,7 +42,6 @@ void create_servers (void)
 	/* server 2 - function 1 */
     s21_comp_time.tv_sec = S21_COMP_TIME / MILLIS_IN_ONE_SEC;
     s21_comp_time.tv_nsec = (S21_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
-    pthread_mutex_init(&s11_mutex, NULL);
 
 #ifdef DEBUG
         printf("S21 params set\n");
@@ -52,7 +49,7 @@ void create_servers (void)
     /* server 2 - function 2 */
     s22_comp_time.tv_sec = S21_COMP_TIME / MILLIS_IN_ONE_SEC;
     s22_comp_time.tv_nsec = (S21_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
-	pthread_mutex_init(&s11_mutex, NULL);
+	pthread_mutex_init(&s2_mutex, NULL);
 #ifdef DEBUG
         printf("S22 params set\n");
 #endif
@@ -92,20 +89,20 @@ void server_function (int server_id, int function_id,
 
 void server1_func_1 (int task_id, events_history *history) 
 {	
-	server_function (1, 1, s11_comp_time, s11_mutex, task_id, history);
+	server_function (1, 1, s11_comp_time, s1_mutex, task_id, history);
 }
 
 void server1_func_2 (int task_id, events_history *history) 
 {	
-	server_function (1, 2, s12_comp_time, s12_mutex, task_id, history);
+	server_function (1, 2, s12_comp_time, s1_mutex, task_id, history);
 }
 
 void server2_func_1 (int task_id, events_history *history) 
 {	
-	server_function (2, 1, s21_comp_time, s21_mutex, task_id, history);
+	server_function (2, 1, s21_comp_time, s2_mutex, task_id, history);
 }
 
 void server2_func_2 (int task_id, events_history *history) 
 {	
-	server_function (2, 2, s22_comp_time, s22_mutex, task_id, history);
+	server_function (2, 2, s22_comp_time, s2_mutex, task_id, history);
 }

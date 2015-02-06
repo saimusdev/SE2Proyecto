@@ -137,7 +137,7 @@ void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params 
     /* For each of the threads, set its attributes and parameters */ 
     int i;
     for (i = 0; i < NUM_TASKS; i++) {
-        params[i].task_id = i;
+        params[i].task_id = i+1;
         params[i].period = tasks_period[i];
         params[i].computation_time = tasks_comp_time[i];
         params[i].task_body = tasks_body[i];

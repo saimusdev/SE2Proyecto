@@ -24,7 +24,7 @@ void periodic_task(void *parameters);
 
 void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params *params);
 
-#define NUM_TASK_ITERATIONS 3
+#define NUM_TASK_ITERATIONS 10
 
 /*
 SCHED_FIFO min/max priority     : 1/99
@@ -41,6 +41,8 @@ SCHED_OTHER min/max priority    : 0/0
 
 #define NUM_TASKS 3
 
+/* TOOD: tal y como están los tiempos se ejecuta primero T1, cuando acaba 
+   todas las iters. T2. Hay que hacer más largo el periodo */
 /* Task 1 */
 #define T1_PRIORITY 5
 #define T1_COMP_TIME 10
@@ -49,7 +51,7 @@ void t1_task_body(struct timespec comp_time, events_history *history);
 
 /* Task 2 */
 #define T2_PRIORITY 3
-#define T2_COMP_TIME 60
+#define T2_COMP_TIME 50
 #define T2_PERIOD 200
 void t2_task_body(struct timespec comp_time, events_history *history);
 
