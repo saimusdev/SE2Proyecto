@@ -41,20 +41,21 @@ void periodic_task(void *task)
     period.tv_sec = ((task_params *) task) -> period / MILLIS_IN_ONE_SEC;
     period.tv_nsec = (((task_params *) task) -> period % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-#ifdef DEBUG
+#ifdef VERBOSE
     printf("T%d: started\n", task_id);
 #endif
 
-    if (clock_gettime (CLOCK_MONOTONIC, &next) != 0) {
+    if (clock_gettime (CLOCK_MONOTONIC, &next)) {
         fprintf(stderr, "T%d: periodic_task(): failed to get the current time: ", task_id);
         perror(NULL);
         return;
     }
+    add_task_event(TASK_BIRTH, history);
 
     // for (;;) {
     int i;
     for (i = 0; i < NUM_TASK_ITERATIONS; i++) {
-#ifdef DEBUG
+#ifdef VERBOSE
     printf("T%d: activated\n", task_id);
 #endif
         add_task_event(TASK_ACTIVATION, history);
@@ -64,6 +65,7 @@ void periodic_task(void *task)
         add_task_event(TASK_COMPLETION, history);
     }
 
+    add_task_event(TASK_DEATH, history);
     pthread_exit(task);
 }
 
@@ -89,23 +91,9 @@ void t3_task_body(struct timespec comp_time, events_history *history)
 void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params *params) 
 {
 #ifdef FIFO_SCHEDULING
-    /* TODO: THIS CODE FAILS
-    if ((max_sched_priority = sched_get_priority_max(SCHED_FIFO)) != 0) {
-        fprintf(stderr, "create_tasks(): failed to get the max SCHED_FIFO priority: ");
-        perror(NULL);
-        return;
-    }
-    */
     max_sched_priority = MAX_SCHED_FIFO_PRIORITY;
 #endif
 #ifdef ROUND_ROBIN_SCHEDULING
-    /* TODO: THIS CODE FAILS
-    if ((max_sched_priority = sched_get_priority_max(SCHED_RR)) != 0) {
-        fprintf(stderr, "create_tasks(): failed to get the max SCHED_RR priority: ");
-        perror(NULL);
-        return;
-    }
-    */
     max_sched_priority = MAX_SCHED_RR_PRIORITY;
 #endif
 
@@ -149,7 +137,7 @@ void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params 
 #ifdef ROUND_ROBIN_SCHEDULING
         set_threads_sched(&thread_attr[i], tasks_priority[i], SCHED_RR);
 #endif
-#ifdef DEBUG
+#ifdef VERBOSE
         printf("T%d: params set\n", i+1);
 #endif
     }
@@ -178,40 +166,41 @@ void set_threads_sched (pthread_attr_t *thread_attr, int priority, int sched_alg
 
 void add_task_event (int event_id, events_history *history)
 {
+    /*
     int thread_priority;
     pthread_attr_t thread_attr;
     struct sched_param thread_sched;
 
-    /* Retrieve the thread attributes and with those, the scheduling parameters: thread priority */
-    if (pthread_getattr_np(pthread_self(), &thread_attr) != 0) {
+    // Retrieve the thread attributes and with those, the scheduling parameters: thread priority 
+    if (pthread_getattr_np(pthread_self(), &thread_attr)) {
         fprintf(stderr, "add_task_event(): failed to get the running thread attributes: ");
         perror(NULL);
         return;
-    } else if (pthread_attr_getschedparam(&thread_attr, &thread_sched) != 0) {
+    } else if (pthread_attr_getschedparam(&thread_attr, &thread_sched)) {
         fprintf(stderr, "add_task_event(): failed to get the running thread scheduling parameters (priority): ");
         perror(NULL);
         return;
     } 
-    /* Save the current thread's priority */
+    // Save the current thread's priority 
     thread_priority = thread_sched.sched_priority;
 
-    /* Set the thread's priority to the max level */
-    if (pthread_setschedprio(pthread_self(), max_sched_priority) != 0) {
+    // Set the thread's priority to the max level 
+    if (pthread_setschedprio(pthread_self(), max_sched_priority)) {
         fprintf(stderr, "add_task_event(): failed to elevate the thread's priority: ");
         perror(NULL);
         return;
     }
 
-    /* Add the event, without being preempted */
+    // Add the event, without being preempted 
     add_event(event_id, history);
 
-    /* Restore the original thread priority */
-    if (pthread_setschedprio(pthread_self(), thread_priority) != 0) {
+    // Restore the original thread priority 
+    if (pthread_setschedprio(pthread_self(), thread_priority)) {
         fprintf(stderr, "add_task_event(): failed to restore the thread's priority: ");
         perror(NULL);
         return;
     }
-
+    */
+    add_event(event_id, history);
 }
-
 

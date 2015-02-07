@@ -21,7 +21,7 @@ OBJS := \
 LIBS := -lrt -lpthread
 
 # Compiler options
-CFLAGS := -Wall #-DDEBUG
+CFLAGS := -Wall
 
 # UNIX only (Windows not supported)
 OS := $(shell uname -s)
@@ -87,6 +87,9 @@ MKDIR := mkdir -p
 ##################################################################
 
 all: $(PROJECT)
+
+verbose: CFLAGS += -DVERBOSE
+verbose: $(PROJECT) 
 
 # Linker call
 $(PROJECT): $(OBJS)

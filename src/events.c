@@ -70,17 +70,23 @@ void print_event (event event, int task_id)
 	tsConvertToMs (event.timestamp, &millis[0], &millis[1]);
 
 	switch(event.type) {
+		case TASK_BIRTH:
+			printf("%4ld.%ld - T%d: is born\n", millis[0], millis[1], task_id);
+			break;
 		case TASK_ACTIVATION:
-			printf("%ld.%ld - T%d: activates\n", millis[0], millis[1], task_id);
+			printf("%4ld.%ld - T%d: activates\n", millis[0], millis[1], task_id);
 			break;
 		case TASK_COMPLETION:
-			printf("%ld.%ld - T%d: completes\n", millis[0], millis[1], task_id); 
+			printf("%4ld.%ld - T%d: finishes\n", millis[0], millis[1], task_id); 
 			break;
 		case CS_ENTRY:
-			printf("%ld.%ld - T%d: enters cs\n", millis[0], millis[1], task_id); 
+			printf("%4ld.%ld - T%d: enters cs\n", millis[0], millis[1], task_id); 
 			break;
 		case CS_EXIT:
-			printf("%ld.%ld - T%d: exits cs\n",  millis[0], millis[1], task_id);
+			printf("%4ld.%ld - T%d: exits cs\n",  millis[0], millis[1], task_id);
+			break;
+		case TASK_DEATH:
+			printf("%4ld.%ld - T%d: dies\n",  millis[0], millis[1], task_id);
 			break;
 		default:
 			break;

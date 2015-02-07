@@ -9,10 +9,12 @@ Author: Simon Ortego Parra
 #ifndef EVENTS_H
 #define EVENTS_H
 
-#define TASK_ACTIVATION 0
-#define TASK_COMPLETION 1
-#define CS_ENTRY 2
-#define CS_EXIT 3
+#define TASK_BIRTH 0
+#define TASK_ACTIVATION 1
+#define TASK_COMPLETION 2
+#define CS_ENTRY 3
+#define CS_EXIT 4
+#define TASK_DEATH 5
 
 typedef struct event {
     int type;
