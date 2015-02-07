@@ -26,8 +26,8 @@ void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params 
 
 #define NUM_TASK_ITERATIONS 5 
 
-//#define FIFO_SCHEDULING
-#define ROUND_ROBIN_SCHEDULING
+#define FIFO_SCHEDULING
+//#define ROUND_ROBIN_SCHEDULING
 
 /*
 SCHED_FIFO min/max priority     : 1/99
