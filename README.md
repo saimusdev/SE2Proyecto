@@ -11,12 +11,6 @@ apt-get install gcc-arm-linux-gnueabihf
 
 ## Build 
 
-### Ubuntu 
-```
-make -f Makefile_Ubuntu
-```
-
-### Other
 ```
 make
 ```
