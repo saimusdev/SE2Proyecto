@@ -88,20 +88,20 @@ void server_function (struct timespec comp_time, pthread_mutex_t *mutex, events_
 
 void server1_func_1 (int task_id, events_history *history) 
 {	
-	server_function (s11_comp_time, s1_mutex, history);
+	server_function (s11_comp_time, &s1_mutex, history);
 }
 
 void server1_func_2 (int task_id, events_history *history) 
 {	
-	server_function (s12_comp_time, s1_mutex, history);
+	server_function (s12_comp_time, &s1_mutex, history);
 }
 
 void server2_func_1 (int task_id, events_history *history) 
 {	
-	server_function (s21_comp_time, s2_mutex, history);
+	server_function (s21_comp_time, &s2_mutex, history);
 }
 
 void server2_func_2 (int task_id, events_history *history) 
 {	
-	server_function (s22_comp_time, s2_mutex, history);
+	server_function (s22_comp_time, &s2_mutex, history);
 }
