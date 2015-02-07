@@ -75,7 +75,6 @@ void server_function (unsigned int server_id, struct timespec comp_time, pthread
 		case 2:
 			add_task_event(S2_ENTRY, history);
 	}
-	add_task_event(CS_ENTRY, history);
 #ifdef VERBOSE
 	printf("thread#%lu aquires mutex @%X. enters cs\n", (unsigned long int) pthread_self(), mutex);
 #endif
