@@ -60,9 +60,9 @@ void periodic_task(void *task)
 #endif
         add_task_event(TASK_ACTIVATION, history);
         task_body(comp_time,history);
+        add_task_event(TASK_COMPLETION, history);
         next = tsAdd(next, period);
         clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
-        add_task_event(TASK_COMPLETION, history);
     }
 
     add_task_event(TASK_DEATH, history);
