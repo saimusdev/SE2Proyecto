@@ -32,7 +32,8 @@ void create_servers (void)
     s12_comp_time.tv_sec = S12_COMP_TIME / MILLIS_IN_ONE_SEC;
     s12_comp_time.tv_nsec = (S12_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-    pthread_mutex_init(&s1_mutex, NULL);
+    /* Init mutex wo/ any priority inheritance protocol */
+	pthread_mutex_init(&s1_mutex, NULL);
 
 #ifdef VERBOSE
     printf("S1 params set\n");
@@ -46,6 +47,7 @@ void create_servers (void)
     s22_comp_time.tv_sec = S22_COMP_TIME / MILLIS_IN_ONE_SEC;
     s22_comp_time.tv_nsec = (S22_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
+    /* Init mutex wo/ any priority inheritance protocol */
 	pthread_mutex_init(&s2_mutex, NULL);
 
 #ifdef VERBOSE
@@ -53,7 +55,7 @@ void create_servers (void)
 #endif
 }
 
-void server_function (struct timespec comp_time, pthread_mutex_t mutex, events_history *history) 
+void server_function (struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
 {
 #ifdef VERBOSE
 	printf("thread#%lu begins server function execution\n", (unsigned long int) pthread_self());
@@ -63,7 +65,7 @@ void server_function (struct timespec comp_time, pthread_mutex_t mutex, events_h
 #ifdef VERBOSE
 	printf("thread#%lu tries to aquire mutex\n", (unsigned long int) pthread_self());
 #endif	
-	pthread_mutex_lock(&mutex);
+	pthread_mutex_lock(mutex);
 
 	/* --- Critical Section ----- */
 	add_task_event(CS_ENTRY, history);
@@ -81,7 +83,7 @@ void server_function (struct timespec comp_time, pthread_mutex_t mutex, events_h
 #ifdef VERBOSE
 	printf("thread#%lu releases mutex\n", (unsigned long int) pthread_self());
 #endif
-	pthread_mutex_unlock(&mutex);	
+	pthread_mutex_unlock(mutex);	
 }
 
 void server1_func_1 (int task_id, events_history *history) 
