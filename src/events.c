@@ -79,8 +79,11 @@ void print_event (event event, int task_id)
 		case TASK_COMPLETION:
 			printf("%4ld.%ld - T%d: finishes\n", millis[0], millis[1], task_id); 
 			break;
-		case CS_ENTRY:
-			printf("%4ld.%ld - T%d: enters cs\n", millis[0], millis[1], task_id); 
+		case S1_ENTRY:
+			printf("%4ld.%ld - T%d: enters S1\n", millis[0], millis[1], task_id); 
+			break;
+		case S2_ENTRY:
+			printf("%4ld.%ld - T%d: enters S2\n", millis[0], millis[1], task_id); 
 			break;
 		case CS_EXIT:
 			printf("%4ld.%ld - T%d: exits cs\n",  millis[0], millis[1], task_id);

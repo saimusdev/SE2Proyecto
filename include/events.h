@@ -12,9 +12,10 @@ Author: Simon Ortego Parra
 #define TASK_BIRTH 0
 #define TASK_ACTIVATION 1
 #define TASK_COMPLETION 2
-#define CS_ENTRY 3
-#define CS_EXIT 4
-#define TASK_DEATH 5
+#define S1_ENTRY 3
+#define S2_ENTRY 4
+#define CS_EXIT 5
+#define TASK_DEATH 6
 
 typedef struct event {
     int type;

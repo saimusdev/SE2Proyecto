@@ -55,7 +55,7 @@ void create_servers (void)
 #endif
 }
 
-void server_function (struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
+void server_function (unsigned int server_id, struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
 {
 #ifdef VERBOSE
 	printf("thread#%lu begins server function execution\n", (unsigned long int) pthread_self());
@@ -63,14 +63,21 @@ void server_function (struct timespec comp_time, pthread_mutex_t *mutex, events_
 	
 	/* tries to aquire mutex */
 #ifdef VERBOSE
-	printf("thread#%lu tries to aquire mutex\n", (unsigned long int) pthread_self());
+	printf("thread#%lu tries to aquire mutex @%X\n", (unsigned long int) pthread_self(), mutex);
 #endif	
 	pthread_mutex_lock(mutex);
 
 	/* --- Critical Section ----- */
+	switch(server_id) {
+		case 1:
+			add_task_event(S1_ENTRY, history);
+			break;	
+		case 2:
+			add_task_event(S2_ENTRY, history);
+	}
 	add_task_event(CS_ENTRY, history);
 #ifdef VERBOSE
-	printf("thread#%lu aquires mutex. enters cs\n", (unsigned long int) pthread_self());
+	printf("thread#%lu aquires mutex @%X. enters cs\n", (unsigned long int) pthread_self(), mutex);
 #endif
 	calc(comp_time);
 	add_task_event(CS_EXIT, history);
@@ -88,20 +95,20 @@ void server_function (struct timespec comp_time, pthread_mutex_t *mutex, events_
 
 void server1_func_1 (int task_id, events_history *history) 
 {	
-	server_function (s11_comp_time, &s1_mutex, history);
+	server_function (1, s11_comp_time, &s1_mutex, history);
 }
 
 void server1_func_2 (int task_id, events_history *history) 
 {	
-	server_function (s12_comp_time, &s1_mutex, history);
+	server_function (1, s12_comp_time, &s1_mutex, history);
 }
 
 void server2_func_1 (int task_id, events_history *history) 
 {	
-	server_function (s21_comp_time, &s2_mutex, history);
+	server_function (2, s21_comp_time, &s2_mutex, history);
 }
 
 void server2_func_2 (int task_id, events_history *history) 
 {	
-	server_function (s22_comp_time, &s2_mutex, history);
+	server_function (2, s22_comp_time, &s2_mutex, history);
 }
