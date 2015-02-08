@@ -53,12 +53,6 @@ void create_servers (void)
 #endif
 }
 
-#define SERVER_ENTRY 4
-#define MUTEX_LOCK 5
-#define MUTEX_AQUIRE 6
-#define MUTEX_RELEASE 7
-#define SERVER_EXIT 8
-
 void server_function (unsigned int func_id, struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
 {
 #ifdef VERBOSE
