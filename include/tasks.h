@@ -24,7 +24,7 @@ void periodic_task(void *parameters);
 
 void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params *params);
 
-#define NUM_TASK_ITERATIONS 5 
+#define NUM_TASK_ITERATIONS 15 
 
 #define FIFO_SCHEDULING
 //#define ROUND_ROBIN_SCHEDULING
@@ -57,7 +57,7 @@ void t2_task_body(struct timespec comp_time, events_history *history);
 /* Task 3 */
 #define T3_PRIORITY 1
 #define T3_COMP_TIME 30
-#define T3_PERIOD 200 
+#define T3_PERIOD 400
 void t3_task_body(struct timespec comp_time, events_history *history);
 
 

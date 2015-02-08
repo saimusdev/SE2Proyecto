@@ -79,13 +79,13 @@ void print_event (event event, int task_id)
 			printf("[%5ld.%-7ld] T%d: activates\n", millis[0], millis[1], task_id);
 			break;
 		case T1_EXECUTING:
-			printf("[%5ld.%-7ld] T1: executing CS(%d)\n", millis[0], millis[1], T1_COMP_TIME);
+			printf("[%5ld.%-7ld] T1: starts CS(%d)\n", millis[0], millis[1], T1_COMP_TIME);
 			break;
 		case T2_EXECUTING:
-			printf("[%5ld.%-7ld] T2: executing CS(%d)\n", millis[0], millis[1], T2_COMP_TIME);
+			printf("[%5ld.%-7ld] T2: starts CS(%d)\n", millis[0], millis[1], T2_COMP_TIME);
 			break;
 		case T3_EXECUTING:
-			printf("[%5ld.%-7ld] T3: executing CS(%d)\n", millis[0], millis[1], T3_COMP_TIME);
+			printf("[%5ld.%-7ld] T3: starts CS(%d)\n", millis[0], millis[1], T3_COMP_TIME);
 			break;
 		case COMPLETION:
 			printf("[%5ld.%-7ld] T%d: finishes\n", millis[0], millis[1], task_id); 
