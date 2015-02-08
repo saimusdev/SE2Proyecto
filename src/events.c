@@ -10,6 +10,8 @@ Author: Simon Ortego Parra
 #include <stdio.h>
 
 #include "events.h"
+#include "tasks.h"
+#include "servers.h"
 #include "ts_util.h"
 
 extern int max_sched_priority;
@@ -70,26 +72,50 @@ void print_event (event event, int task_id)
 	tsConvertToMs (event.timestamp, &millis[0], &millis[1]);
 
 	switch(event.type) {
-		case TASK_BIRTH:
-			printf("%4ld.%ld - T%d: is born\n", millis[0], millis[1], task_id);
+		case BIRTH:
+			printf("[%5ld.%-7ld] T%d: is born\n", millis[0], millis[1], task_id);
 			break;
-		case TASK_ACTIVATION:
-			printf("%4ld.%ld - T%d: activates\n", millis[0], millis[1], task_id);
+		case ACTIVATION:
+			printf("[%5ld.%-7ld] T%d: activates\n", millis[0], millis[1], task_id);
 			break;
-		case TASK_COMPLETION:
-			printf("%4ld.%ld - T%d: finishes\n", millis[0], millis[1], task_id); 
+		case T1_EXECUTING:
+			printf("[%5ld.%-7ld] T1: executing CS(%d)\n", millis[0], millis[1], T1_COMP_TIME);
 			break;
-		case S1_ENTRY:
-			printf("%4ld.%ld - T%d: enters S1\n", millis[0], millis[1], task_id); 
+		case T2_EXECUTING:
+			printf("[%5ld.%-7ld] T2: executing CS(%d)\n", millis[0], millis[1], T2_COMP_TIME);
 			break;
-		case S2_ENTRY:
-			printf("%4ld.%ld - T%d: enters S2\n", millis[0], millis[1], task_id); 
+		case T3_EXECUTING:
+			printf("[%5ld.%-7ld] T3: executing CS(%d)\n", millis[0], millis[1], T3_COMP_TIME);
 			break;
-		case CS_EXIT:
-			printf("%4ld.%ld - T%d: exits cs\n",  millis[0], millis[1], task_id);
+		case COMPLETION:
+			printf("[%5ld.%-7ld] T%d: finishes\n", millis[0], millis[1], task_id); 
 			break;
-		case TASK_DEATH:
-			printf("%4ld.%ld - T%d: dies\n",  millis[0], millis[1], task_id);
+		case S11_ENTRY:
+			printf("[%5ld.%-7ld] T%d: enters S11(%d)\n", millis[0], millis[1], task_id, S11_COMP_TIME);
+			break;
+		case S12_ENTRY:
+			printf("[%5ld.%-7ld] T%d: enters S12(%d)\n", millis[0], millis[1], task_id, S12_COMP_TIME);
+			break;
+		case S21_ENTRY:
+			printf("[%5ld.%-7ld] T%d: enters S21(%d)\n", millis[0], millis[1], task_id, S21_COMP_TIME);
+			break;
+		case S22_ENTRY:
+			printf("[%5ld.%-7ld] T%d: enters S22(%d)\n", millis[0], millis[1], task_id, S22_COMP_TIME);
+			break;
+		case S11_EXIT:
+			printf("[%5ld.%-7ld] T%d: exits S11\n", millis[0], millis[1], task_id);
+			break;
+		case S12_EXIT:
+			printf("[%5ld.%-7ld] T%d: exits S12\n", millis[0], millis[1], task_id);
+			break;
+		case S21_EXIT:
+			printf("[%5ld.%-7ld] T%d: exits S21\n", millis[0], millis[1], task_id);
+			break;
+		case S22_EXIT:
+			printf("[%5ld.%-7ld] T%d: exits S22\n", millis[0], millis[1], task_id);
+			break;
+		case DEATH:
+			printf("[%5ld.%-7ld] T%d: dies\n",  millis[0], millis[1], task_id);
 			break;
 		default:
 			break;

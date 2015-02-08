@@ -50,7 +50,7 @@ void periodic_task(void *task)
         perror(NULL);
         return;
     }
-    add_task_event(TASK_BIRTH, history);
+    add_task_event(BIRTH, history);
 
     // for (;;) {
     int i;
@@ -58,14 +58,24 @@ void periodic_task(void *task)
 #ifdef VERBOSE
     printf("T%d: activated\n", task_id);
 #endif
-        add_task_event(TASK_ACTIVATION, history);
+        switch(i) {
+            case 0:
+                add_task_event(T1_EXECUTING, history);
+                break;
+            case 1:
+                add_task_event(T2_EXECUTING, history);
+                break;
+            case 2:
+                add_task_event(T3_EXECUTING, history);
+        }
         task_body(comp_time,history);
-        add_task_event(TASK_COMPLETION, history);
+        add_task_event(COMPLETION, history);
         next = tsAdd(next, period);
         clock_nanosleep (CLOCK_MONOTONIC, TIMER_ABSTIME, &next, 0);
+        add_task_event(ACTIVATION, history);
     }
 
-    add_task_event(TASK_DEATH, history);
+    add_task_event(DEATH, history);
     pthread_exit(task);
 }
 

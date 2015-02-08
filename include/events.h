@@ -9,13 +9,21 @@ Author: Simon Ortego Parra
 #ifndef EVENTS_H
 #define EVENTS_H
 
-#define TASK_BIRTH 0
-#define TASK_ACTIVATION 1
-#define TASK_COMPLETION 2
-#define S1_ENTRY 3
-#define S2_ENTRY 4
-#define CS_EXIT 5
-#define TASK_DEATH 6
+#define BIRTH 0
+#define ACTIVATION 1
+#define T1_EXECUTING 2
+#define T2_EXECUTING 3
+#define T3_EXECUTING 4
+#define COMPLETION 5
+#define S11_ENTRY 6
+#define S12_ENTRY 7
+#define S21_ENTRY 8
+#define S22_ENTRY 9
+#define S11_EXIT 10 
+#define S12_EXIT 11
+#define S21_EXIT 12 
+#define S22_EXIT 13 
+#define DEATH 14
 
 typedef struct event {
     int type;
@@ -24,7 +32,7 @@ typedef struct event {
 } event;
 
 typedef struct events_history {
-	int task_id;
+	int task_id, task_comp_time;
 	event *first_event, *last_event;
 } events_history;
 
