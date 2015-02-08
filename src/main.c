@@ -47,13 +47,6 @@ int main (int argc, char **argv)
         return -1;
     }
 
-    //printf("All time output is given in milliseconds.\n\n");
-    //printf("\nTask  Pr.   C    T     D\n");
-    //printf("---------------------------\n");
-    //printf("T1    %d   %d   %d   %d\n", T1_PRIORITY, T1_COMP_TIME, T1_PERIOD, T1_PERIOD);
-    //printf("T2    %d   %d   %d   %d\n", T2_PRIORITY, T2_COMP_TIME, T2_PERIOD, T2_PERIOD);
-    //printf("T3    %d   %d   %d   %d\n\n", T3_PRIORITY, T3_COMP_TIME, T3_PERIOD, T3_PERIOD);
-
 #ifdef VERBOSE
         printf("starting threads..");
 #endif

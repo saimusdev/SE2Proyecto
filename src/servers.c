@@ -83,7 +83,9 @@ void server_function (unsigned int func_id, struct timespec comp_time, pthread_m
 	printf("thread#%lu releases mutex\n", (unsigned long int) pthread_self());
 #endif
     add_event(MUTEX_RELEASE, func_id, history);
-	pthread_mutex_unlock(mutex);	
+	pthread_mutex_unlock(mutex);
+	
+	add_event(SERVER_EXIT, func_id, history);
 }
 
 void s11 (int task_id, events_history *history) 

@@ -58,9 +58,9 @@ void t1_body(struct timespec comp_time, events_history *history);
 void t2_body(struct timespec comp_time, events_history *history);
 
 /* Task 3 */
-#define T3_PRIORITY 94
-#define T3_COMP_TIME 30
-#define T3_PERIOD 400 
+#define T3_PRIORITY 91
+#define T3_COMP_TIME 30 
+#define T3_PERIOD 300 
 void t3_body(struct timespec comp_time, events_history *history);
 
 
