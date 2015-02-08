@@ -54,6 +54,7 @@ void periodic_task(void *task)
 
     // for (;;) {
     int i;
+    add_task_event(ACTIVATION, history);
     for (i = 0; i < NUM_TASK_ITERATIONS; i++) {
 #ifdef VERBOSE
     printf("T%d: activated\n", task_id);
