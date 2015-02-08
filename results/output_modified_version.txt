@@ -3,7 +3,7 @@ NO Priority Inheritance
  Task  Pr.   C    T     D
   T1    5   10   100   100
   T2    3   60   200   200
-  T3    1   50   300   400
+  T3    1   50   300   300
 
 Output:
 

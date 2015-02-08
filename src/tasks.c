@@ -129,7 +129,7 @@ void create_tasks (pthread_t *threads, pthread_attr_t *thread_attr, task_params 
         params[i].period = tasks_period[i];
         params[i].computation_time = tasks_comp_time[i];
         params[i].task_body = tasks_body[i];
-        params[i].history = create_events_history(i);
+        params[i].history = create_events_history(i+1);
         running_threads[i] = threads[i];
 #ifdef FIFO_SCHEDULING
         set_threads_sched(&thread_attr[i], tasks_priority[i], SCHED_FIFO);
