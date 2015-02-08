@@ -22,6 +22,8 @@ pthread_mutex_t s1_mutex, s2_mutex;
 
 void create_servers (void) 
 {	
+	pthread_mutexattr_t s1_mutex_attr, s2_mutex_attr;
+
 	/* server 1 - function 1 */
 	s11_comp_time.tv_sec = S11_COMP_TIME / MILLIS_IN_ONE_SEC;
     s11_comp_time.tv_nsec = (S11_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
@@ -30,8 +32,10 @@ void create_servers (void)
     s12_comp_time.tv_sec = S12_COMP_TIME / MILLIS_IN_ONE_SEC;
     s12_comp_time.tv_nsec = (S12_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-    /* Init mutex wo/ any priority inheritance protocol */
-	pthread_mutex_init(&s1_mutex, NULL);
+    /* Init mutex for ICPP (ceiling = highest priority task, T1) */
+    pthread_mutexattr_setprotocol(&s1_mutex_attr, PTHREAD_PRIO_PROTECT);
+    pthread_mutexattr_setprioceiling (&s1_mutex_attr, T1_PRIORITY);
+	pthread_mutex_init(&s1_mutex, &s1_mutex_attr); 
 
 #ifdef VERBOSE
     printf("S1 params set\n");
@@ -45,19 +49,15 @@ void create_servers (void)
     s22_comp_time.tv_sec = S22_COMP_TIME / MILLIS_IN_ONE_SEC;
     s22_comp_time.tv_nsec = (S22_COMP_TIME % MILLIS_IN_ONE_SEC) * NANOS_IN_MILLIS;
 
-    /* Init mutex wo/ any priority inheritance protocol */
-	pthread_mutex_init(&s2_mutex, NULL);
+    /* Init mutex for ICPP (ceiling = highest priority task, T2) */
+    pthread_mutexattr_setprotocol(&s2_mutex_attr, PTHREAD_PRIO_PROTECT);
+    pthread_mutexattr_setprioceiling (&s2_mutex_attr, T2_PRIORITY);
+	pthread_mutex_init(&s2_mutex, &s2_mutex_attr); 
 
 #ifdef VERBOSE
     printf("S22 params set\n");
 #endif
 }
-
-#define SERVER_ENTRY 4
-#define MUTEX_LOCK 5
-#define MUTEX_AQUIRE 6
-#define MUTEX_RELEASE 7
-#define SERVER_EXIT 8
 
 void server_function (unsigned int func_id, struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
 {
