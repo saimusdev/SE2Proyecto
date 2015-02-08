@@ -15,9 +15,6 @@ Author: Simon Ortego Parra
 #include "calc.h"
 #include "servers.h"
 
-extern void add_task_event (int event_id, events_history *history);
-void add_server_event (int server_func, int event_id, events_history *history);
-
 static struct timespec s11_comp_time, s12_comp_time,
 					   s21_comp_time, s22_comp_time;
 
@@ -56,25 +53,32 @@ void create_servers (void)
 #endif
 }
 
-void server_function (unsigned int server_func, struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
+#define SERVER_ENTRY 4
+#define MUTEX_LOCK 5
+#define MUTEX_AQUIRE 6
+#define MUTEX_RELEASE 7
+#define SERVER_EXIT 8
+
+void server_function (unsigned int func_id, struct timespec comp_time, pthread_mutex_t *mutex, events_history *history) 
 {
 #ifdef VERBOSE
 	printf("thread#%lu begins server function execution\n", (unsigned long int) pthread_self());
 #endif
+    add_event(SERVER_ENTRY, func_id, history);
 	
 	/* tries to aquire mutex */
 #ifdef VERBOSE
 	printf("thread#%lu tries to aquire mutex @%X\n", (unsigned long int) pthread_self(), mutex);
 #endif	
+    add_event(MUTEX_LOCK, func_id, history);
 	pthread_mutex_lock(mutex);
 
 	/* --- Critical Section ----- */
-	add_server_event (server_func, 1, history);
+    add_event(MUTEX_AQUIRE, func_id, history);
 #ifdef VERBOSE
 	printf("thread#%lu aquires mutex @%X. enters cs\n", (unsigned long int) pthread_self(), mutex);
 #endif
 	calc(comp_time);
-	add_server_event (server_func, 0, history);
 #ifdef VERBOSE
 	printf("thread#%lu exits cs\n", (unsigned long int) pthread_self());
 #endif
@@ -84,52 +88,26 @@ void server_function (unsigned int server_func, struct timespec comp_time, pthre
 #ifdef VERBOSE
 	printf("thread#%lu releases mutex\n", (unsigned long int) pthread_self());
 #endif
+    add_event(MUTEX_RELEASE, func_id, history);
 	pthread_mutex_unlock(mutex);	
 }
 
-void server1_func_1 (int task_id, events_history *history) 
+void s11 (int task_id, events_history *history) 
 {	
-	server_function (11, s11_comp_time, &s1_mutex, history);
+	server_function (S11, s11_comp_time, &s1_mutex, history);
 }
 
-void server1_func_2 (int task_id, events_history *history) 
+void s12 (int task_id, events_history *history) 
 {	
-	server_function (12, s12_comp_time, &s1_mutex, history);
+	server_function (S12, s12_comp_time, &s1_mutex, history);
 }
 
-void server2_func_1 (int task_id, events_history *history) 
+void s21 (int task_id, events_history *history) 
 {	
-	server_function (21, s21_comp_time, &s2_mutex, history);
+	server_function (S21, s21_comp_time, &s2_mutex, history);
 }
 
-void server2_func_2 (int task_id, events_history *history) 
+void s22 (int task_id, events_history *history) 
 {	
-	server_function (22, s22_comp_time, &s2_mutex, history);
+	server_function (S22, s22_comp_time, &s2_mutex, history);
 }
-
-
-void add_server_event (int server_func, int enters_cs, events_history *history)
-{
-	switch(server_func) {
-		case 11:
-			(enters_cs) ? 
-				add_task_event(S11_ENTRY, history) :
-				add_task_event(S11_EXIT, history);
-			break;	
-		case 12:
-			(enters_cs) ? 
-				add_task_event(S12_ENTRY, history) :
-				add_task_event(S12_EXIT, history);
-			break;	
-		case 21:
-			(enters_cs) ? 
-				add_task_event(S21_ENTRY, history) :
-				add_task_event(S21_EXIT, history);
-			break;	
-		case 22:
-			(enters_cs) ? 
-				add_task_event(S22_ENTRY, history) :
-				add_task_event(S22_EXIT, history);
-	}
-}
-

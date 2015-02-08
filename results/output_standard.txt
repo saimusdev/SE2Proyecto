@@ -7,79 +7,231 @@ NO Priority Inheritance
 
 Output:
 
-   0.526500 - T0: is born
-   0.707458 - T0: activates
-  10.714875 - T0: enters S1
-  20.720208 - T0: exits cs
-  20.723625 - T0: finishes
-  21.281750 - T1: is born
-  21.410375 - T1: activates
-  71.416458 - T1: enters S2
- 100.548958 - T0: activates
- 110.553666 - T0: enters S1
- 120.557958 - T0: exits cs
- 120.560666 - T0: finishes
- 120.576666 - T1: exits cs
- 120.578916 - T1: finishes
- 121.200166 - T2: activates
- 121.202750 - T2: enters S2
- 121.92666 - T2: is born
- 141.207958 - T2: exits cs
- 171.212250 - T2: enters S1
- 191.217250 - T2: exits cs
- 191.219541 - T2: finishes
- 200.587541 - T0: activates
- 210.594833 - T0: enters S1
- 220.599791 - T0: exits cs
- 220.602583 - T0: finishes
- 221.317208 - T1: activates
- 271.323625 - T1: enters S2
- 300.544916 - T0: activates
- 310.550208 - T0: enters S1
- 320.554833 - T0: exits cs
- 320.557500 - T0: finishes
- 320.572833 - T1: exits cs
- 320.575333 - T1: finishes
- 400.564458 - T0: activates
- 410.569916 - T0: enters S1
- 420.574583 - T0: exits cs
- 420.576958 - T0: finishes
- 421.321375 - T1: activates
- 471.326375 - T1: enters S2
- 500.544625 - T0: dies
- 501.332083 - T1: exits cs
- 501.338125 - T1: finishes
- 521.139750 - T2: activates
- 521.146833 - T2: enters S2
- 541.150250 - T2: exits cs
- 571.156833 - T2: enters S1
- 591.161291 - T2: exits cs
- 591.163666 - T2: finishes
- 621.329666 - T1: activates
- 671.336541 - T1: enters S2
- 701.341041 - T1: exits cs
- 701.343875 - T1: finishes
- 821.320916 - T1: activates
- 871.326291 - T1: enters S2
- 901.331250 - T1: exits cs
- 901.333666 - T1: finishes
- 921.132041 - T2: activates
- 921.135625 - T2: enters S2
- 941.139958 - T2: exits cs
- 971.145333 - T2: enters S1
- 991.149500 - T2: exits cs
- 991.151833 - T2: finishes
-1021.324791 - T1: dies
-1321.141333 - T2: activates
-1321.151750 - T2: enters S2
-1341.156333 - T2: exits cs
-1371.161625 - T2: enters S1
-1391.165208 - T2: exits cs
-1391.168333 - T2: finishes
-1721.134875 - T2: activates
-1721.138083 - T2: enters S2
-1741.142583 - T2: exits cs
-1771.146916 - T2: enters S1
-1791.151666 - T2: exits cs
-1791.153958 - T2: finishes
-2121.135750 - T2: dies
+[    0.643708 ] T1: is born
+[    0.848333 ] T1: activates
+[    0.851375 ] T1: starts CS(10)
+[   10.858458 ] T1: enters S11(10)
+[   20.863583 ] T1: exits S11
+[   20.867250 ] T1: finishes
+[   21.317875 ] T2: is born
+[   21.446416 ] T2: activates
+[   21.449125 ] T1: starts CS(10)
+[   71.455000 ] T2: enters S21(30)
+[  100.662875 ] T1: activates
+[  100.665541 ] T2: starts CS(50)
+[  110.670708 ] T1: enters S11(10)
+[  120.674666 ] T1: exits S11
+[  120.677708 ] T1: finishes
+[  120.694875 ] T2: exits S21
+[  120.697375 ] T2: finishes
+[  121.157625 ] T3: is born
+[  121.262625 ] T3: activates
+[  121.264875 ] T1: starts CS(10)
+[  121.268166 ] T3: enters S22(20)
+[  141.272583 ] T3: exits S22
+[  171.279166 ] T3: enters S12(20)
+[  191.283333 ] T3: exits S12
+[  191.285833 ] T3: finishes
+[  200.699875 ] T1: activates
+[  200.704375 ] T3: starts CS(30)
+[  210.709375 ] T1: enters S11(10)
+[  220.713458 ] T1: exits S11
+[  220.715833 ] T1: finishes
+[  221.357666 ] T2: activates
+[  221.361000 ] T2: starts CS(50)
+[  271.365458 ] T2: enters S21(30)
+[  300.659416 ] T1: activates
+[  310.664375 ] T1: enters S11(10)
+[  320.668875 ] T1: exits S11
+[  320.671500 ] T1: finishes
+[  320.707458 ] T2: exits S21
+[  320.710000 ] T2: finishes
+[  400.681250 ] T1: activates
+[  410.686416 ] T1: enters S11(10)
+[  420.690875 ] T1: exits S11
+[  420.693375 ] T1: finishes
+[  421.350500 ] T2: activates
+[  421.353458 ] T3: starts CS(30)
+[  471.358416 ] T2: enters S21(30)
+[  500.659250 ] T1: activates
+[  510.664000 ] T1: enters S11(10)
+[  520.668416 ] T1: exits S11
+[  520.671125 ] T1: finishes
+[  520.685875 ] T2: exits S21
+[  520.688166 ] T2: finishes
+[  521.191416 ] T3: activates
+[  521.194708 ] T2: starts CS(50)
+[  521.197333 ] T3: enters S22(20)
+[  541.201666 ] T3: exits S22
+[  571.207166 ] T3: enters S12(20)
+[  591.211916 ] T3: exits S12
+[  591.214333 ] T3: finishes
+[  600.679458 ] T1: activates
+[  610.685166 ] T1: enters S11(10)
+[  620.689541 ] T1: exits S11
+[  620.691875 ] T1: finishes
+[  621.349125 ] T2: activates
+[  671.354208 ] T2: enters S21(30)
+[  700.659291 ] T1: activates
+[  710.663708 ] T1: enters S11(10)
+[  720.668458 ] T1: exits S11
+[  720.671125 ] T1: finishes
+[  720.685666 ] T2: exits S21
+[  720.688250 ] T2: finishes
+[  800.679458 ] T1: activates
+[  810.684958 ] T1: enters S11(10)
+[  820.697375 ] T1: exits S11
+[  820.699791 ] T1: finishes
+[  821.350541 ] T2: activates
+[  871.355666 ] T2: enters S21(30)
+[  900.659541 ] T1: activates
+[  910.663708 ] T1: enters S11(10)
+[  920.667708 ] T1: exits S11
+[  920.670291 ] T1: finishes
+[  920.685583 ] T2: exits S21
+[  920.687875 ] T2: finishes
+[  921.191083 ] T3: activates
+[  921.194041 ] T3: starts CS(30)
+[  921.196166 ] T3: enters S22(20)
+[  941.200458 ] T3: exits S22
+[  971.205541 ] T3: enters S12(20)
+[  991.210166 ] T3: exits S12
+[  991.212916 ] T3: finishes
+[ 1000.681333 ] T1: activates
+[ 1010.686416 ] T1: enters S11(10)
+[ 1020.690333 ] T1: exits S11
+[ 1020.692666 ] T1: finishes
+[ 1021.348750 ] T2: activates
+[ 1071.354083 ] T2: enters S21(30)
+[ 1100.659375 ] T1: activates
+[ 1110.664250 ] T1: enters S11(10)
+[ 1120.668250 ] T1: exits S11
+[ 1120.670916 ] T1: finishes
+[ 1120.685708 ] T2: exits S21
+[ 1120.688208 ] T2: finishes
+[ 1200.698750 ] T1: activates
+[ 1210.706500 ] T1: enters S11(10)
+[ 1220.710333 ] T1: exits S11
+[ 1220.713083 ] T1: finishes
+[ 1221.357500 ] T2: activates
+[ 1271.363166 ] T2: enters S21(30)
+[ 1300.660166 ] T1: activates
+[ 1310.665458 ] T1: enters S11(10)
+[ 1320.669250 ] T1: exits S11
+[ 1320.671833 ] T1: finishes
+[ 1320.706208 ] T2: exits S21
+[ 1320.708750 ] T2: finishes
+[ 1321.191375 ] T3: activates
+[ 1321.195958 ] T3: enters S22(20)
+[ 1341.200041 ] T3: exits S22
+[ 1371.205291 ] T3: enters S12(20)
+[ 1391.209416 ] T3: exits S12
+[ 1391.212125 ] T3: finishes
+[ 1400.680041 ] T1: activates
+[ 1410.686166 ] T1: enters S11(10)
+[ 1420.690208 ] T1: exits S11
+[ 1420.692583 ] T1: finishes
+[ 1421.349791 ] T2: activates
+[ 1471.355083 ] T2: enters S21(30)
+[ 1500.659458 ] T1: activates
+[ 1500.661750 ] T1: dies
+[ 1501.360333 ] T2: exits S21
+[ 1501.366000 ] T2: finishes
+[ 1621.362000 ] T2: activates
+[ 1671.371875 ] T2: enters S21(30)
+[ 1701.376916 ] T2: exits S21
+[ 1701.379375 ] T2: finishes
+[ 1721.199416 ] T3: activates
+[ 1721.204083 ] T3: enters S22(20)
+[ 1741.208166 ] T3: exits S22
+[ 1771.213458 ] T3: enters S12(20)
+[ 1791.217666 ] T3: exits S12
+[ 1791.220041 ] T3: finishes
+[ 1821.358666 ] T2: activates
+[ 1871.364958 ] T2: enters S21(30)
+[ 1901.369083 ] T2: exits S21
+[ 1901.371875 ] T2: finishes
+[ 2021.358333 ] T2: activates
+[ 2071.363625 ] T2: enters S21(30)
+[ 2101.368208 ] T2: exits S21
+[ 2101.370666 ] T2: finishes
+[ 2121.197375 ] T3: activates
+[ 2121.201541 ] T3: enters S22(20)
+[ 2141.205416 ] T3: exits S22
+[ 2171.210333 ] T3: enters S12(20)
+[ 2191.215041 ] T3: exits S12
+[ 2191.217500 ] T3: finishes
+[ 2221.356500 ] T2: activates
+[ 2271.361333 ] T2: enters S21(30)
+[ 2301.365333 ] T2: exits S21
+[ 2301.368125 ] T2: finishes
+[ 2421.358166 ] T2: activates
+[ 2471.362875 ] T2: enters S21(30)
+[ 2501.367791 ] T2: exits S21
+[ 2501.370208 ] T2: finishes
+[ 2521.197708 ] T3: activates
+[ 2521.200583 ] T3: enters S22(20)
+[ 2541.205166 ] T3: exits S22
+[ 2571.210333 ] T3: enters S12(20)
+[ 2591.215208 ] T3: exits S12
+[ 2591.217916 ] T3: finishes
+[ 2621.360541 ] T2: activates
+[ 2671.366458 ] T2: enters S21(30)
+[ 2701.371375 ] T2: exits S21
+[ 2701.374125 ] T2: finishes
+[ 2821.358375 ] T2: activates
+[ 2871.364125 ] T2: enters S21(30)
+[ 2901.369083 ] T2: exits S21
+[ 2901.371542 ] T2: finishes
+[ 2921.196542 ] T3: activates
+[ 2921.199917 ] T3: enters S22(20)
+[ 2941.204042 ] T3: exits S22
+[ 2971.209292 ] T3: enters S12(20)
+[ 2991.214208 ] T3: exits S12
+[ 2991.217000 ] T3: finishes
+[ 3021.358792 ] T2: activates
+[ 3021.361417 ] T2: dies
+[ 3321.203083 ] T3: activates
+[ 3321.213333 ] T3: enters S22(20)
+[ 3341.217458 ] T3: exits S22
+[ 3371.223208 ] T3: enters S12(20)
+[ 3391.228000 ] T3: exits S12
+[ 3391.230458 ] T3: finishes
+[ 3721.197375 ] T3: activates
+[ 3721.202417 ] T3: enters S22(20)
+[ 3741.206625 ] T3: exits S22
+[ 3771.211542 ] T3: enters S12(20)
+[ 3791.216167 ] T3: exits S12
+[ 3791.218583 ] T3: finishes
+[ 4121.199417 ] T3: activates
+[ 4121.202292 ] T3: enters S22(20)
+[ 4141.206917 ] T3: exits S22
+[ 4171.211667 ] T3: enters S12(20)
+[ 4191.216292 ] T3: exits S12
+[ 4191.219000 ] T3: finishes
+[ 4521.198333 ] T3: activates
+[ 4521.201625 ] T3: enters S22(20)
+[ 4541.206500 ] T3: exits S22
+[ 4571.211875 ] T3: enters S12(20)
+[ 4591.216375 ] T3: exits S12
+[ 4591.219083 ] T3: finishes
+[ 4921.197042 ] T3: activates
+[ 4921.200500 ] T3: enters S22(20)
+[ 4941.205125 ] T3: exits S22
+[ 4971.210458 ] T3: enters S12(20)
+[ 4991.214875 ] T3: exits S12
+[ 4991.217375 ] T3: finishes
+[ 5321.213167 ] T3: activates
+[ 5321.228583 ] T3: enters S22(20)
+[ 5341.233667 ] T3: exits S22
+[ 5371.240375 ] T3: enters S12(20)
+[ 5391.245083 ] T3: exits S12
+[ 5391.247625 ] T3: finishes
+[ 5721.198584 ] T3: activates
+[ 5721.202167 ] T3: enters S22(20)
+[ 5741.206209 ] T3: exits S22
+[ 5771.211667 ] T3: enters S12(20)
+[ 5791.215625 ] T3: exits S12
+[ 5791.218375 ] T3: finishes
+[ 6121.196084 ] T3: activates
+[ 6121.199209 ] T3: dies
