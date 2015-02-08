@@ -1,0 +1,85 @@
+NO Priority Inheritance  
+---------------------------
+ Task  Pr.   C    T     D
+  T1    5   10   100   100
+  T2    3   60   200   200
+  T3    1   50   300   400
+
+Output:
+
+   0.490958 - T0: is born
+   0.696958 - T0: activates
+  10.703458 - T0: enters S1
+  20.709125 - T0: exits cs
+  20.712541 - T0: finishes
+  21.505166 - T1: is born
+  21.647583 - T1: activates
+  71.653500 - T1: enters S2
+ 100.513208 - T0: activates
+ 110.518708 - T0: enters S1
+ 120.523583 - T0: exits cs
+ 120.527041 - T0: finishes
+ 120.546500 - T1: exits cs
+ 120.548666 - T1: finishes
+ 120.949458 - T2: is born
+ 121.57625 - T2: activates
+ 121.60291 - T2: enters S2
+ 141.65125 - T2: exits cs
+ 191.70500 - T2: enters S1
+ 200.511291 - T0: activates
+ 211.75541 - T2: exits cs
+ 211.91000 - T0: enters S1
+ 221.132958 - T0: finishes
+ 221.148541 - T2: finishes
+ 221.555500 - T1: activates
+ 221.95458 - T0: exits cs
+ 271.563291 - T1: enters S2
+ 300.508708 - T0: activates
+ 310.513750 - T0: enters S1
+ 320.517500 - T0: exits cs
+ 320.520291 - T0: finishes
+ 320.535416 - T1: exits cs
+ 320.538000 - T1: finishes
+ 400.529375 - T0: activates
+ 410.533750 - T0: enters S1
+ 420.538416 - T0: exits cs
+ 420.541250 - T0: finishes
+ 420.980458 - T2: activates
+ 420.983916 - T2: enters S2
+ 421.525541 - T1: activates
+ 471.547500 - T2: exits cs
+ 471.562625 - T1: enters S2
+ 500.507791 - T0: dies
+ 501.567208 - T1: exits cs
+ 501.610625 - T1: finishes
+ 551.630708 - T2: enters S1
+ 571.635625 - T2: exits cs
+ 571.637958 - T2: finishes
+ 621.555291 - T1: activates
+ 671.563458 - T1: enters S2
+ 701.567750 - T1: exits cs
+ 701.570500 - T1: finishes
+ 720.992416 - T2: activates
+ 720.995916 - T2: enters S2
+ 740.999833 - T2: exits cs
+ 791.4625 - T2: enters S1
+ 811.10958 - T2: finishes
+ 811.8541 - T2: exits cs
+ 821.566333 - T1: activates
+ 871.574208 - T1: enters S2
+ 901.579958 - T1: exits cs
+ 901.582750 - T1: finishes
+1020.998916 - T2: activates
+1021.3041 - T2: enters S2
+1021.525083 - T1: dies
+1041.7208 - T2: exits cs
+1091.13500 - T2: enters S1
+1111.17666 - T2: exits cs
+1111.20375 - T2: finishes
+1320.996333 - T2: activates
+1321.2000 - T2: enters S2
+1341.6750 - T2: exits cs
+1391.12083 - T2: enters S1
+1411.16708 - T2: exits cs
+1411.19125 - T2: finishes
+1620.990791 - T2: dies
