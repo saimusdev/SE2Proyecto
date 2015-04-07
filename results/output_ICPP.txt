@@ -1,0 +1,888 @@
+NO Priority Inheritance  
+---------------------------
+ Task  Pr.   C    T     D
+  T1   95   10   100   100
+  T2   93   50   200   200
+  T3   91   30   400   400
+
+Output:
+
+[    0.804083 ] T1: is born
+[    0.830416 ] T1: activates
+[    0.853416 ] T1: starts CS(10)
+[   10.883083 ] T1: enters S11(10)
+[   10.906000 ] T1: tries to acquire lock S1
+[   10.928750 ] T1: acquires lock S1
+[   20.955666 ] T1: releases lock S1
+[   20.980416 ] T1: exits S11(10)
+[   21.3541   ] T1: finishes
+[   21.558583 ] T2: is born
+[   21.582416 ] T2: activates
+[   21.604875 ] T2: starts CS(50)
+[   71.634458 ] T2: enters S21(30)
+[   71.658041 ] T2: tries to acquire lock S2
+[   71.680750 ] T2: acquires lock S2
+[  100.545291 ] T1: activates
+[  100.568583 ] T1: starts CS(10)
+[  110.596208 ] T1: enters S11(10)
+[  110.618625 ] T1: tries to acquire lock S1
+[  110.641000 ] T1: acquires lock S1
+[  120.668041 ] T1: releases lock S1
+[  120.691208 ] T1: exits S11(10)
+[  120.713458 ] T1: finishes
+[  120.750333 ] T2: releases lock S2
+[  120.773083 ] T2: exits S21(30)
+[  120.795458 ] T2: finishes
+[  121.419208 ] T3: is born
+[  121.442958 ] T3: activates
+[  121.466583 ] T3: enters S22(20)
+[  121.488916 ] T3: tries to acquire lock S2
+[  121.511166 ] T3: acquires lock S2
+[  141.539500 ] T3: releases lock S2
+[  141.563000 ] T3: exits S22(20)
+[  141.585166 ] T3: starts CS(30)
+[  171.612416 ] T3: enters S12(20)
+[  171.635708 ] T3: tries to acquire lock S1
+[  171.657916 ] T3: acquires lock S1
+[  191.684125 ] T3: releases lock S1
+[  191.707208 ] T3: exits S12(20)
+[  191.729458 ] T3: finishes
+[  200.578541 ] T1: activates
+[  200.602541 ] T1: starts CS(10)
+[  210.631041 ] T1: enters S11(10)
+[  210.653833 ] T1: tries to acquire lock S1
+[  210.676458 ] T1: acquires lock S1
+[  220.704500 ] T1: releases lock S1
+[  220.727500 ] T1: exits S11(10)
+[  220.749916 ] T1: finishes
+[  221.462666 ] T2: activates
+[  221.486833 ] T2: starts CS(50)
+[  271.514583 ] T2: enters S21(30)
+[  271.537750 ] T2: tries to acquire lock S2
+[  271.559916 ] T2: acquires lock S2
+[  300.540833 ] T1: activates
+[  300.564291 ] T1: starts CS(10)
+[  310.591291 ] T1: enters S11(10)
+[  310.614375 ] T1: tries to acquire lock S1
+[  310.637000 ] T1: acquires lock S1
+[  320.663500 ] T1: releases lock S1
+[  320.686750 ] T1: exits S11(10)
+[  320.708958 ] T1: finishes
+[  320.745708 ] T2: releases lock S2
+[  320.768625 ] T2: exits S21(30)
+[  320.791041 ] T2: finishes
+[  400.564791 ] T1: activates
+[  400.588708 ] T1: starts CS(10)
+[  410.615958 ] T1: enters S11(10)
+[  410.638458 ] T1: tries to acquire lock S1
+[  410.660791 ] T1: acquires lock S1
+[  420.686958 ] T1: releases lock S1
+[  420.710041 ] T1: exits S11(10)
+[  420.732208 ] T1: finishes
+[  421.454750 ] T2: activates
+[  421.478125 ] T2: starts CS(50)
+[  471.505583 ] T2: enters S21(30)
+[  471.528583 ] T2: tries to acquire lock S2
+[  471.550958 ] T2: acquires lock S2
+[  500.541000 ] T1: activates
+[  500.564208 ] T1: starts CS(10)
+[  510.591041 ] T1: enters S11(10)
+[  510.614041 ] T1: tries to acquire lock S1
+[  510.636583 ] T1: acquires lock S1
+[  520.703625 ] T1: releases lock S1
+[  520.728500 ] T1: exits S11(10)
+[  520.751041 ] T1: finishes
+[  520.789791 ] T2: releases lock S2
+[  520.812625 ] T2: exits S21(30)
+[  520.834583 ] T2: finishes
+[  521.343291 ] T3: activates
+[  521.367208 ] T3: enters S22(20)
+[  521.389791 ] T3: tries to acquire lock S2
+[  521.412041 ] T3: acquires lock S2
+[  541.440791 ] T3: releases lock S2
+[  541.464000 ] T3: exits S22(20)
+[  541.486166 ] T3: starts CS(30)
+[  571.513500 ] T3: enters S12(20)
+[  571.536208 ] T3: tries to acquire lock S1
+[  571.558541 ] T3: acquires lock S1
+[  591.586000 ] T3: releases lock S1
+[  591.609416 ] T3: exits S12(20)
+[  591.631708 ] T3: finishes
+[  600.562083 ] T1: activates
+[  600.585583 ] T1: starts CS(10)
+[  610.613083 ] T1: enters S11(10)
+[  610.635833 ] T1: tries to acquire lock S1
+[  610.658166 ] T1: acquires lock S1
+[  620.684625 ] T1: releases lock S1
+[  620.707791 ] T1: exits S11(10)
+[  620.730083 ] T1: finishes
+[  621.453000 ] T2: activates
+[  621.476958 ] T2: starts CS(50)
+[  671.504833 ] T2: enters S21(30)
+[  671.528083 ] T2: tries to acquire lock S2
+[  671.550583 ] T2: acquires lock S2
+[  700.540875 ] T1: activates
+[  700.563541 ] T1: starts CS(10)
+[  710.590083 ] T1: enters S11(10)
+[  710.612791 ] T1: tries to acquire lock S1
+[  710.635208 ] T1: acquires lock S1
+[  720.661750 ] T1: releases lock S1
+[  720.684916 ] T1: exits S11(10)
+[  720.707208 ] T1: finishes
+[  720.742583 ] T2: releases lock S2
+[  720.765583 ] T2: exits S21(30)
+[  720.787791 ] T2: finishes
+[  800.562500 ] T1: activates
+[  800.585708 ] T1: starts CS(10)
+[  810.613250 ] T1: enters S11(10)
+[  810.636041 ] T1: tries to acquire lock S1
+[  810.658500 ] T1: acquires lock S1
+[  820.685541 ] T1: releases lock S1
+[  820.708791 ] T1: exits S11(10)
+[  820.731166 ] T1: finishes
+[  821.457833 ] T2: activates
+[  821.481208 ] T2: starts CS(50)
+[  871.509000 ] T2: enters S21(30)
+[  871.531958 ] T2: tries to acquire lock S2
+[  871.554333 ] T2: acquires lock S2
+[  900.540833 ] T1: activates
+[  900.564000 ] T1: starts CS(10)
+[  910.591416 ] T1: enters S11(10)
+[  910.614583 ] T1: tries to acquire lock S1
+[  910.637000 ] T1: acquires lock S1
+[  920.663833 ] T1: releases lock S1
+[  920.687166 ] T1: exits S11(10)
+[  920.709541 ] T1: finishes
+[  920.745000 ] T2: releases lock S2
+[  920.768041 ] T2: exits S21(30)
+[  920.790500 ] T2: finishes
+[  921.343583 ] T3: activates
+[  921.367583 ] T3: enters S22(20)
+[  921.389958 ] T3: tries to acquire lock S2
+[  921.412333 ] T3: acquires lock S2
+[  941.439708 ] T3: releases lock S2
+[  941.463458 ] T3: exits S22(20)
+[  941.485750 ] T3: starts CS(30)
+[  971.513791 ] T3: enters S12(20)
+[  971.537000 ] T3: tries to acquire lock S1
+[  971.559458 ] T3: acquires lock S1
+[  991.586625 ] T3: releases lock S1
+[  991.609666 ] T3: exits S12(20)
+[  991.632041 ] T3: finishes
+[ 1000.566000 ] T1: activates
+[ 1000.614708 ] T1: starts CS(10)
+[ 1010.642583 ] T1: enters S11(10)
+[ 1010.665625 ] T1: tries to acquire lock S1
+[ 1010.687875 ] T1: acquires lock S1
+[ 1020.714291 ] T1: releases lock S1
+[ 1020.737250 ] T1: exits S11(10)
+[ 1020.759666 ] T1: finishes
+[ 1021.455041 ] T2: activates
+[ 1021.478458 ] T2: starts CS(50)
+[ 1071.506083 ] T2: enters S21(30)
+[ 1071.529000 ] T2: tries to acquire lock S2
+[ 1071.551500 ] T2: acquires lock S2
+[ 1100.541333 ] T1: activates
+[ 1100.564375 ] T1: starts CS(10)
+[ 1110.591458 ] T1: enters S11(10)
+[ 1110.614333 ] T1: tries to acquire lock S1
+[ 1110.636500 ] T1: acquires lock S1
+[ 1120.663333 ] T1: releases lock S1
+[ 1120.686708 ] T1: exits S11(10)
+[ 1120.709083 ] T1: finishes
+[ 1120.788208 ] T2: releases lock S2
+[ 1120.812583 ] T2: exits S21(30)
+[ 1120.835291 ] T2: finishes
+[ 1200.566125 ] T1: activates
+[ 1200.589541 ] T1: starts CS(10)
+[ 1210.617500 ] T1: enters S11(10)
+[ 1210.640291 ] T1: tries to acquire lock S1
+[ 1210.662625 ] T1: acquires lock S1
+[ 1220.689125 ] T1: releases lock S1
+[ 1220.712125 ] T1: exits S11(10)
+[ 1220.734458 ] T1: finishes
+[ 1221.458333 ] T2: activates
+[ 1221.482041 ] T2: starts CS(50)
+[ 1271.509208 ] T2: enters S21(30)
+[ 1271.531916 ] T2: tries to acquire lock S2
+[ 1271.554500 ] T2: acquires lock S2
+[ 1300.540958 ] T1: activates
+[ 1300.564125 ] T1: starts CS(10)
+[ 1310.591125 ] T1: enters S11(10)
+[ 1310.614083 ] T1: tries to acquire lock S1
+[ 1310.636333 ] T1: acquires lock S1
+[ 1320.699000 ] T1: releases lock S1
+[ 1320.723291 ] T1: exits S11(10)
+[ 1320.745958 ] T1: finishes
+[ 1320.783458 ] T2: releases lock S2
+[ 1320.806250 ] T2: exits S21(30)
+[ 1320.828500 ] T2: finishes
+[ 1321.349166 ] T3: activates
+[ 1321.373125 ] T3: enters S22(20)
+[ 1321.395333 ] T3: tries to acquire lock S2
+[ 1321.417750 ] T3: acquires lock S2
+[ 1341.445833 ] T3: releases lock S2
+[ 1341.469125 ] T3: exits S22(20)
+[ 1341.531125 ] T3: starts CS(30)
+[ 1371.559875 ] T3: enters S12(20)
+[ 1371.583041 ] T3: tries to acquire lock S1
+[ 1371.605541 ] T3: acquires lock S1
+[ 1391.632458 ] T3: releases lock S1
+[ 1391.655625 ] T3: exits S12(20)
+[ 1391.678000 ] T3: finishes
+[ 1400.557250 ] T1: activates
+[ 1400.580583 ] T1: starts CS(10)
+[ 1410.608500 ] T1: enters S11(10)
+[ 1410.631166 ] T1: tries to acquire lock S1
+[ 1410.653541 ] T1: acquires lock S1
+[ 1420.680583 ] T1: releases lock S1
+[ 1420.703875 ] T1: exits S11(10)
+[ 1420.726208 ] T1: finishes
+[ 1421.463416 ] T2: activates
+[ 1421.487333 ] T2: starts CS(50)
+[ 1471.515458 ] T2: enters S21(30)
+[ 1471.538583 ] T2: tries to acquire lock S2
+[ 1471.561583 ] T2: acquires lock S2
+[ 1500.541583 ] T1: activates
+[ 1500.564833 ] T1: starts CS(10)
+[ 1510.592625 ] T1: enters S11(10)
+[ 1510.615291 ] T1: tries to acquire lock S1
+[ 1510.637416 ] T1: acquires lock S1
+[ 1520.664750 ] T1: releases lock S1
+[ 1520.687708 ] T1: exits S11(10)
+[ 1520.709916 ] T1: finishes
+[ 1520.746791 ] T2: releases lock S2
+[ 1520.769250 ] T2: exits S21(30)
+[ 1520.791625 ] T2: finishes
+[ 1600.564125 ] T1: activates
+[ 1600.587375 ] T1: starts CS(10)
+[ 1610.615458 ] T1: enters S11(10)
+[ 1610.637833 ] T1: tries to acquire lock S1
+[ 1610.660125 ] T1: acquires lock S1
+[ 1620.687041 ] T1: releases lock S1
+[ 1620.709958 ] T1: exits S11(10)
+[ 1620.732500 ] T1: finishes
+[ 1621.452541 ] T2: activates
+[ 1621.476000 ] T2: starts CS(50)
+[ 1671.503125 ] T2: enters S21(30)
+[ 1671.526291 ] T2: tries to acquire lock S2
+[ 1671.548583 ] T2: acquires lock S2
+[ 1700.540791 ] T1: activates
+[ 1700.564125 ] T1: starts CS(10)
+[ 1710.590458 ] T1: enters S11(10)
+[ 1710.613291 ] T1: tries to acquire lock S1
+[ 1710.635833 ] T1: acquires lock S1
+[ 1720.662083 ] T1: releases lock S1
+[ 1720.685000 ] T1: exits S11(10)
+[ 1720.707500 ] T1: finishes
+[ 1720.743666 ] T2: releases lock S2
+[ 1720.766500 ] T2: exits S21(30)
+[ 1720.788500 ] T2: finishes
+[ 1721.345000 ] T3: activates
+[ 1721.368875 ] T3: enters S22(20)
+[ 1721.391125 ] T3: tries to acquire lock S2
+[ 1721.413416 ] T3: acquires lock S2
+[ 1741.440958 ] T3: releases lock S2
+[ 1741.464208 ] T3: exits S22(20)
+[ 1741.486875 ] T3: starts CS(30)
+[ 1771.514500 ] T3: enters S12(20)
+[ 1771.537541 ] T3: tries to acquire lock S1
+[ 1771.559875 ] T3: acquires lock S1
+[ 1791.586541 ] T3: releases lock S1
+[ 1791.631541 ] T3: exits S12(20)
+[ 1791.654416 ] T3: finishes
+[ 1800.561083 ] T1: activates
+[ 1800.584500 ] T1: starts CS(10)
+[ 1810.611833 ] T1: enters S11(10)
+[ 1810.634583 ] T1: tries to acquire lock S1
+[ 1810.657166 ] T1: acquires lock S1
+[ 1820.684375 ] T1: releases lock S1
+[ 1820.707500 ] T1: exits S11(10)
+[ 1820.729750 ] T1: finishes
+[ 1821.460375 ] T2: activates
+[ 1821.483541 ] T2: starts CS(50)
+[ 1871.511666 ] T2: enters S21(30)
+[ 1871.534750 ] T2: tries to acquire lock S2
+[ 1871.557041 ] T2: acquires lock S2
+[ 1900.540875 ] T1: activates
+[ 1900.563958 ] T1: starts CS(10)
+[ 1910.591375 ] T1: enters S11(10)
+[ 1910.614416 ] T1: tries to acquire lock S1
+[ 1910.636750 ] T1: acquires lock S1
+[ 1920.664250 ] T1: releases lock S1
+[ 1920.687166 ] T1: exits S11(10)
+[ 1920.709500 ] T1: finishes
+[ 1920.745666 ] T2: releases lock S2
+[ 1920.768375 ] T2: exits S21(30)
+[ 1920.790708 ] T2: finishes
+[ 2000.646333 ] T1: activates
+[ 2000.672833 ] T1: starts CS(10)
+[ 2010.702916 ] T1: enters S11(10)
+[ 2010.725958 ] T1: tries to acquire lock S1
+[ 2010.749166 ] T1: acquires lock S1
+[ 2020.776958 ] T1: releases lock S1
+[ 2020.800083 ] T1: exits S11(10)
+[ 2020.822125 ] T1: finishes
+[ 2021.469833 ] T2: activates
+[ 2021.494208 ] T2: starts CS(50)
+[ 2071.521916 ] T2: enters S21(30)
+[ 2071.544541 ] T2: tries to acquire lock S2
+[ 2071.566916 ] T2: acquires lock S2
+[ 2100.542333 ] T1: activates
+[ 2100.565291 ] T1: starts CS(10)
+[ 2110.592458 ] T1: enters S11(10)
+[ 2110.615541 ] T1: tries to acquire lock S1
+[ 2110.637791 ] T1: acquires lock S1
+[ 2120.727250 ] T1: releases lock S1
+[ 2120.752208 ] T1: exits S11(10)
+[ 2120.774958 ] T1: finishes
+[ 2120.813708 ] T2: releases lock S2
+[ 2120.836416 ] T2: exits S21(30)
+[ 2120.858666 ] T2: finishes
+[ 2121.358041 ] T3: activates
+[ 2121.383666 ] T3: enters S22(20)
+[ 2121.405958 ] T3: tries to acquire lock S2
+[ 2121.428541 ] T3: acquires lock S2
+[ 2141.456916 ] T3: releases lock S2
+[ 2141.480083 ] T3: exits S22(20)
+[ 2141.502583 ] T3: starts CS(30)
+[ 2171.530208 ] T3: enters S12(20)
+[ 2171.553041 ] T3: tries to acquire lock S1
+[ 2171.575416 ] T3: acquires lock S1
+[ 2191.602583 ] T3: releases lock S1
+[ 2191.626000 ] T3: exits S12(20)
+[ 2191.648250 ] T3: finishes
+[ 2200.565708 ] T1: activates
+[ 2200.589833 ] T1: starts CS(10)
+[ 2210.618375 ] T1: enters S11(10)
+[ 2210.641458 ] T1: tries to acquire lock S1
+[ 2210.664041 ] T1: acquires lock S1
+[ 2220.691208 ] T1: releases lock S1
+[ 2220.714041 ] T1: exits S11(10)
+[ 2220.736625 ] T1: finishes
+[ 2221.460291 ] T2: activates
+[ 2221.483833 ] T2: starts CS(50)
+[ 2271.511708 ] T2: enters S21(30)
+[ 2271.534458 ] T2: tries to acquire lock S2
+[ 2271.556958 ] T2: acquires lock S2
+[ 2300.541458 ] T1: activates
+[ 2300.564583 ] T1: starts CS(10)
+[ 2310.592458 ] T1: enters S11(10)
+[ 2310.615166 ] T1: tries to acquire lock S1
+[ 2310.637416 ] T1: acquires lock S1
+[ 2320.663708 ] T1: releases lock S1
+[ 2320.686916 ] T1: exits S11(10)
+[ 2320.709541 ] T1: finishes
+[ 2320.746708 ] T2: releases lock S2
+[ 2320.769333 ] T2: exits S21(30)
+[ 2320.791583 ] T2: finishes
+[ 2400.564166 ] T1: activates
+[ 2400.587625 ] T1: starts CS(10)
+[ 2410.615125 ] T1: enters S11(10)
+[ 2410.637958 ] T1: tries to acquire lock S1
+[ 2410.661000 ] T1: acquires lock S1
+[ 2420.688458 ] T1: releases lock S1
+[ 2420.711541 ] T1: exits S11(10)
+[ 2420.733916 ] T1: finishes
+[ 2421.453000 ] T2: activates
+[ 2421.476500 ] T2: starts CS(50)
+[ 2471.503458 ] T2: enters S21(30)
+[ 2471.526416 ] T2: tries to acquire lock S2
+[ 2471.548916 ] T2: acquires lock S2
+[ 2500.540500 ] T1: activates
+[ 2500.564000 ] T1: starts CS(10)
+[ 2510.591166 ] T1: enters S11(10)
+[ 2510.613916 ] T1: tries to acquire lock S1
+[ 2510.636583 ] T1: acquires lock S1
+[ 2520.663166 ] T1: releases lock S1
+[ 2520.686250 ] T1: exits S11(10)
+[ 2520.708416 ] T1: finishes
+[ 2520.744041 ] T2: releases lock S2
+[ 2520.766791 ] T2: exits S21(30)
+[ 2520.789125 ] T2: finishes
+[ 2521.339666 ] T3: activates
+[ 2521.363083 ] T3: enters S22(20)
+[ 2521.385416 ] T3: tries to acquire lock S2
+[ 2521.408083 ] T3: acquires lock S2
+[ 2541.436083 ] T3: releases lock S2
+[ 2541.459083 ] T3: exits S22(20)
+[ 2541.481416 ] T3: starts CS(30)
+[ 2571.508833 ] T3: enters S12(20)
+[ 2571.531708 ] T3: tries to acquire lock S1
+[ 2571.554166 ] T3: acquires lock S1
+[ 2591.581625 ] T3: releases lock S1
+[ 2591.604958 ] T3: exits S12(20)
+[ 2591.627041 ] T3: finishes
+[ 2600.562083 ] T1: activates
+[ 2600.585500 ] T1: starts CS(10)
+[ 2610.613250 ] T1: enters S11(10)
+[ 2610.636083 ] T1: tries to acquire lock S1
+[ 2610.658208 ] T1: acquires lock S1
+[ 2620.685833 ] T1: releases lock S1
+[ 2620.708875 ] T1: exits S11(10)
+[ 2620.730791 ] T1: finishes
+[ 2621.452666 ] T2: activates
+[ 2621.476375 ] T2: starts CS(50)
+[ 2671.504583 ] T2: enters S21(30)
+[ 2671.527625 ] T2: tries to acquire lock S2
+[ 2671.550041 ] T2: acquires lock S2
+[ 2700.540041 ] T1: activates
+[ 2700.563291 ] T1: starts CS(10)
+[ 2710.590333 ] T1: enters S11(10)
+[ 2710.613500 ] T1: tries to acquire lock S1
+[ 2710.636000 ] T1: acquires lock S1
+[ 2720.663375 ] T1: releases lock S1
+[ 2720.686416 ] T1: exits S11(10)
+[ 2720.708541 ] T1: finishes
+[ 2720.787958 ] T2: releases lock S2
+[ 2720.812458 ] T2: exits S21(30)
+[ 2720.834625 ] T2: finishes
+[ 2800.554917 ] T1: activates
+[ 2800.578958 ] T1: starts CS(10)
+[ 2810.606583 ] T1: enters S11(10)
+[ 2810.629667 ] T1: tries to acquire lock S1
+[ 2810.652458 ] T1: acquires lock S1
+[ 2820.679500 ] T1: releases lock S1
+[ 2820.702458 ] T1: exits S11(10)
+[ 2820.724667 ] T1: finishes
+[ 2821.460167 ] T2: activates
+[ 2821.483583 ] T2: starts CS(50)
+[ 2871.511042 ] T2: enters S21(30)
+[ 2871.533792 ] T2: tries to acquire lock S2
+[ 2871.556250 ] T2: acquires lock S2
+[ 2900.542000 ] T1: activates
+[ 2900.565375 ] T1: starts CS(10)
+[ 2910.591792 ] T1: enters S11(10)
+[ 2910.614583 ] T1: tries to acquire lock S1
+[ 2910.637000 ] T1: acquires lock S1
+[ 2920.701333 ] T1: releases lock S1
+[ 2920.726042 ] T1: exits S11(10)
+[ 2920.748458 ] T1: finishes
+[ 2920.787083 ] T2: releases lock S2
+[ 2920.810083 ] T2: exits S21(30)
+[ 2920.832417 ] T2: finishes
+[ 2921.343375 ] T3: activates
+[ 2921.367250 ] T3: enters S22(20)
+[ 2921.389542 ] T3: tries to acquire lock S2
+[ 2921.411833 ] T3: acquires lock S2
+[ 2941.439708 ] T3: releases lock S2
+[ 2941.463083 ] T3: exits S22(20)
+[ 2941.485208 ] T3: starts CS(30)
+[ 2971.512500 ] T3: enters S12(20)
+[ 2971.536000 ] T3: tries to acquire lock S1
+[ 2971.558500 ] T3: acquires lock S1
+[ 2991.584917 ] T3: releases lock S1
+[ 2991.608250 ] T3: exits S12(20)
+[ 2991.630583 ] T3: finishes
+[ 3000.564667 ] T1: activates
+[ 3000.614333 ] T1: dies
+[ 3021.499667 ] T2: activates
+[ 3021.524667 ] T2: starts CS(50)
+[ 3071.555042 ] T2: enters S21(30)
+[ 3071.578250 ] T2: tries to acquire lock S2
+[ 3071.602000 ] T2: acquires lock S2
+[ 3101.628208 ] T2: releases lock S2
+[ 3101.652417 ] T2: exits S21(30)
+[ 3101.674708 ] T2: finishes
+[ 3221.464042 ] T2: activates
+[ 3221.488083 ] T2: starts CS(50)
+[ 3271.515958 ] T2: enters S21(30)
+[ 3271.539458 ] T2: tries to acquire lock S2
+[ 3271.562125 ] T2: acquires lock S2
+[ 3301.589333 ] T2: releases lock S2
+[ 3301.612958 ] T2: exits S21(30)
+[ 3301.635208 ] T2: finishes
+[ 3321.353625 ] T3: activates
+[ 3321.378583 ] T3: enters S22(20)
+[ 3321.400875 ] T3: tries to acquire lock S2
+[ 3321.423250 ] T3: acquires lock S2
+[ 3341.451417 ] T3: releases lock S2
+[ 3341.525333 ] T3: exits S22(20)
+[ 3341.549083 ] T3: starts CS(30)
+[ 3371.577500 ] T3: enters S12(20)
+[ 3371.600833 ] T3: tries to acquire lock S1
+[ 3371.623417 ] T3: acquires lock S1
+[ 3391.650958 ] T3: releases lock S1
+[ 3391.674167 ] T3: exits S12(20)
+[ 3391.696542 ] T3: finishes
+[ 3421.465458 ] T2: activates
+[ 3421.489708 ] T2: starts CS(50)
+[ 3471.518083 ] T2: enters S21(30)
+[ 3471.541083 ] T2: tries to acquire lock S2
+[ 3471.563250 ] T2: acquires lock S2
+[ 3501.590083 ] T2: releases lock S2
+[ 3501.613417 ] T2: exits S21(30)
+[ 3501.635583 ] T2: finishes
+[ 3621.461458 ] T2: activates
+[ 3621.484958 ] T2: starts CS(50)
+[ 3671.512833 ] T2: enters S21(30)
+[ 3671.535958 ] T2: tries to acquire lock S2
+[ 3671.558333 ] T2: acquires lock S2
+[ 3701.585792 ] T2: releases lock S2
+[ 3701.608792 ] T2: exits S21(30)
+[ 3701.630958 ] T2: finishes
+[ 3721.346000 ] T3: activates
+[ 3721.369958 ] T3: enters S22(20)
+[ 3721.392333 ] T3: tries to acquire lock S2
+[ 3721.414542 ] T3: acquires lock S2
+[ 3741.441917 ] T3: releases lock S2
+[ 3741.465250 ] T3: exits S22(20)
+[ 3741.487208 ] T3: starts CS(30)
+[ 3771.514500 ] T3: enters S12(20)
+[ 3771.537542 ] T3: tries to acquire lock S1
+[ 3771.559750 ] T3: acquires lock S1
+[ 3791.586375 ] T3: releases lock S1
+[ 3791.631708 ] T3: exits S12(20)
+[ 3791.654458 ] T3: finishes
+[ 3821.462500 ] T2: activates
+[ 3821.486000 ] T2: starts CS(50)
+[ 3871.513083 ] T2: enters S21(30)
+[ 3871.535833 ] T2: tries to acquire lock S2
+[ 3871.558208 ] T2: acquires lock S2
+[ 3901.584708 ] T2: releases lock S2
+[ 3901.607917 ] T2: exits S21(30)
+[ 3901.630375 ] T2: finishes
+[ 4021.500583 ] T2: activates
+[ 4021.527208 ] T2: starts CS(50)
+[ 4071.556458 ] T2: enters S21(30)
+[ 4071.580042 ] T2: tries to acquire lock S2
+[ 4071.603375 ] T2: acquires lock S2
+[ 4101.630708 ] T2: releases lock S2
+[ 4101.654000 ] T2: exits S21(30)
+[ 4101.676417 ] T2: finishes
+[ 4121.351583 ] T3: activates
+[ 4121.376333 ] T3: enters S22(20)
+[ 4121.398875 ] T3: tries to acquire lock S2
+[ 4121.421125 ] T3: acquires lock S2
+[ 4141.449083 ] T3: releases lock S2
+[ 4141.472917 ] T3: exits S22(20)
+[ 4141.495542 ] T3: starts CS(30)
+[ 4171.522083 ] T3: enters S12(20)
+[ 4171.545000 ] T3: tries to acquire lock S1
+[ 4171.567625 ] T3: acquires lock S1
+[ 4191.594750 ] T3: releases lock S1
+[ 4191.617750 ] T3: exits S12(20)
+[ 4191.639958 ] T3: finishes
+[ 4221.462875 ] T2: activates
+[ 4221.486458 ] T2: starts CS(50)
+[ 4271.514458 ] T2: enters S21(30)
+[ 4271.537583 ] T2: tries to acquire lock S2
+[ 4271.559958 ] T2: acquires lock S2
+[ 4301.637125 ] T2: releases lock S2
+[ 4301.661792 ] T2: exits S21(30)
+[ 4301.684333 ] T2: finishes
+[ 4421.466625 ] T2: activates
+[ 4421.489917 ] T2: starts CS(50)
+[ 4471.517875 ] T2: enters S21(30)
+[ 4471.540583 ] T2: tries to acquire lock S2
+[ 4471.562833 ] T2: acquires lock S2
+[ 4501.590458 ] T2: releases lock S2
+[ 4501.613792 ] T2: exits S21(30)
+[ 4501.636292 ] T2: finishes
+[ 4521.339542 ] T3: activates
+[ 4521.363167 ] T3: enters S22(20)
+[ 4521.385583 ] T3: tries to acquire lock S2
+[ 4521.407917 ] T3: acquires lock S2
+[ 4541.436250 ] T3: releases lock S2
+[ 4541.459667 ] T3: exits S22(20)
+[ 4541.482292 ] T3: starts CS(30)
+[ 4571.510000 ] T3: enters S12(20)
+[ 4571.532750 ] T3: tries to acquire lock S1
+[ 4571.555333 ] T3: acquires lock S1
+[ 4591.582917 ] T3: releases lock S1
+[ 4591.606208 ] T3: exits S12(20)
+[ 4591.628458 ] T3: finishes
+[ 4621.461792 ] T2: activates
+[ 4621.485625 ] T2: starts CS(50)
+[ 4671.512917 ] T2: enters S21(30)
+[ 4671.536375 ] T2: tries to acquire lock S2
+[ 4671.558625 ] T2: acquires lock S2
+[ 4701.585708 ] T2: releases lock S2
+[ 4701.609042 ] T2: exits S21(30)
+[ 4701.631500 ] T2: finishes
+[ 4821.461458 ] T2: activates
+[ 4821.485125 ] T2: starts CS(50)
+[ 4871.512708 ] T2: enters S21(30)
+[ 4871.535875 ] T2: tries to acquire lock S2
+[ 4871.558708 ] T2: acquires lock S2
+[ 4901.585583 ] T2: releases lock S2
+[ 4901.608583 ] T2: exits S21(30)
+[ 4901.631125 ] T2: finishes
+[ 4921.348917 ] T3: activates
+[ 4921.372625 ] T3: enters S22(20)
+[ 4921.395042 ] T3: tries to acquire lock S2
+[ 4921.417333 ] T3: acquires lock S2
+[ 4941.444125 ] T3: releases lock S2
+[ 4941.467833 ] T3: exits S22(20)
+[ 4941.490250 ] T3: starts CS(30)
+[ 4971.517917 ] T3: enters S12(20)
+[ 4971.540833 ] T3: tries to acquire lock S1
+[ 4971.563458 ] T3: acquires lock S1
+[ 4991.590917 ] T3: releases lock S1
+[ 4991.614458 ] T3: exits S12(20)
+[ 4991.636667 ] T3: finishes
+[ 5021.463292 ] T2: activates
+[ 5021.487083 ] T2: starts CS(50)
+[ 5071.514542 ] T2: enters S21(30)
+[ 5071.537500 ] T2: tries to acquire lock S2
+[ 5071.560042 ] T2: acquires lock S2
+[ 5101.586708 ] T2: releases lock S2
+[ 5101.610250 ] T2: exits S21(30)
+[ 5101.632500 ] T2: finishes
+[ 5221.461292 ] T2: activates
+[ 5221.484833 ] T2: starts CS(50)
+[ 5271.512417 ] T2: enters S21(30)
+[ 5271.534958 ] T2: tries to acquire lock S2
+[ 5271.557000 ] T2: acquires lock S2
+[ 5301.584167 ] T2: releases lock S2
+[ 5301.606833 ] T2: exits S21(30)
+[ 5301.629167 ] T2: finishes
+[ 5321.347125 ] T3: activates
+[ 5321.370958 ] T3: enters S22(20)
+[ 5321.393375 ] T3: tries to acquire lock S2
+[ 5321.415667 ] T3: acquires lock S2
+[ 5341.487000 ] T3: releases lock S2
+[ 5341.511375 ] T3: exits S22(20)
+[ 5341.533500 ] T3: starts CS(30)
+[ 5371.561833 ] T3: enters S12(20)
+[ 5371.584417 ] T3: tries to acquire lock S1
+[ 5371.606625 ] T3: acquires lock S1
+[ 5391.633625 ] T3: releases lock S1
+[ 5391.657042 ] T3: exits S12(20)
+[ 5391.679417 ] T3: finishes
+[ 5421.462208 ] T2: activates
+[ 5421.485917 ] T2: starts CS(50)
+[ 5471.514333 ] T2: enters S21(30)
+[ 5471.536875 ] T2: tries to acquire lock S2
+[ 5471.559583 ] T2: acquires lock S2
+[ 5501.586667 ] T2: releases lock S2
+[ 5501.610083 ] T2: exits S21(30)
+[ 5501.632333 ] T2: finishes
+[ 5621.463209 ] T2: activates
+[ 5621.486500 ] T2: starts CS(50)
+[ 5671.514542 ] T2: enters S21(30)
+[ 5671.537542 ] T2: tries to acquire lock S2
+[ 5671.560042 ] T2: acquires lock S2
+[ 5701.586709 ] T2: releases lock S2
+[ 5701.610000 ] T2: exits S21(30)
+[ 5701.632625 ] T2: finishes
+[ 5721.343750 ] T3: activates
+[ 5721.367792 ] T3: enters S22(20)
+[ 5721.390167 ] T3: tries to acquire lock S2
+[ 5721.412375 ] T3: acquires lock S2
+[ 5741.440042 ] T3: releases lock S2
+[ 5741.463292 ] T3: exits S22(20)
+[ 5741.485459 ] T3: starts CS(30)
+[ 5771.511875 ] T3: enters S12(20)
+[ 5771.535084 ] T3: tries to acquire lock S1
+[ 5771.557500 ] T3: acquires lock S1
+[ 5791.584042 ] T3: releases lock S1
+[ 5791.628834 ] T3: exits S12(20)
+[ 5791.652084 ] T3: finishes
+[ 5821.461584 ] T2: activates
+[ 5821.485250 ] T2: starts CS(50)
+[ 5871.513000 ] T2: enters S21(30)
+[ 5871.536084 ] T2: tries to acquire lock S2
+[ 5871.558459 ] T2: acquires lock S2
+[ 5901.624459 ] T2: releases lock S2
+[ 5901.648709 ] T2: exits S21(30)
+[ 5901.671375 ] T2: finishes
+[ 6021.481542 ] T2: activates
+[ 6021.506500 ] T2: dies
+[ 6121.378125 ] T3: activates
+[ 6121.404334 ] T3: enters S22(20)
+[ 6121.427375 ] T3: tries to acquire lock S2
+[ 6121.450542 ] T3: acquires lock S2
+[ 6141.478709 ] T3: releases lock S2
+[ 6141.502625 ] T3: exits S22(20)
+[ 6141.524750 ] T3: starts CS(30)
+[ 6171.552500 ] T3: enters S12(20)
+[ 6171.575250 ] T3: tries to acquire lock S1
+[ 6171.597792 ] T3: acquires lock S1
+[ 6191.624167 ] T3: releases lock S1
+[ 6191.647584 ] T3: exits S12(20)
+[ 6191.669959 ] T3: finishes
+[ 6521.353834 ] T3: activates
+[ 6521.378000 ] T3: enters S22(20)
+[ 6521.400417 ] T3: tries to acquire lock S2
+[ 6521.423042 ] T3: acquires lock S2
+[ 6541.450417 ] T3: releases lock S2
+[ 6541.473917 ] T3: exits S22(20)
+[ 6541.496209 ] T3: starts CS(30)
+[ 6571.523000 ] T3: enters S12(20)
+[ 6571.546000 ] T3: tries to acquire lock S1
+[ 6571.568292 ] T3: acquires lock S1
+[ 6591.595834 ] T3: releases lock S1
+[ 6591.619542 ] T3: exits S12(20)
+[ 6591.641584 ] T3: finishes
+[ 6921.350750 ] T3: activates
+[ 6921.374542 ] T3: enters S22(20)
+[ 6921.396709 ] T3: tries to acquire lock S2
+[ 6921.418959 ] T3: acquires lock S2
+[ 6941.446625 ] T3: releases lock S2
+[ 6941.469709 ] T3: exits S22(20)
+[ 6941.491875 ] T3: starts CS(30)
+[ 6971.519209 ] T3: enters S12(20)
+[ 6971.542125 ] T3: tries to acquire lock S1
+[ 6971.564417 ] T3: acquires lock S1
+[ 6991.591000 ] T3: releases lock S1
+[ 6991.614584 ] T3: exits S12(20)
+[ 6991.636667 ] T3: finishes
+[ 7321.351250 ] T3: activates
+[ 7321.374959 ] T3: enters S22(20)
+[ 7321.397375 ] T3: tries to acquire lock S2
+[ 7321.472959 ] T3: acquires lock S2
+[ 7341.503292 ] T3: releases lock S2
+[ 7341.526917 ] T3: exits S22(20)
+[ 7341.549375 ] T3: starts CS(30)
+[ 7371.576959 ] T3: enters S12(20)
+[ 7371.600042 ] T3: tries to acquire lock S1
+[ 7371.622417 ] T3: acquires lock S1
+[ 7391.649250 ] T3: releases lock S1
+[ 7391.672042 ] T3: exits S12(20)
+[ 7391.694500 ] T3: finishes
+[ 7721.348542 ] T3: activates
+[ 7721.372292 ] T3: enters S22(20)
+[ 7721.394375 ] T3: tries to acquire lock S2
+[ 7721.416834 ] T3: acquires lock S2
+[ 7741.444542 ] T3: releases lock S2
+[ 7741.467792 ] T3: exits S22(20)
+[ 7741.490167 ] T3: starts CS(30)
+[ 7771.517125 ] T3: enters S12(20)
+[ 7771.539917 ] T3: tries to acquire lock S1
+[ 7771.562584 ] T3: acquires lock S1
+[ 7791.589542 ] T3: releases lock S1
+[ 7791.634667 ] T3: exits S12(20)
+[ 7791.657459 ] T3: finishes
+[ 8121.373459 ] T3: activates
+[ 8121.400125 ] T3: enters S22(20)
+[ 8121.422750 ] T3: tries to acquire lock S2
+[ 8121.445334 ] T3: acquires lock S2
+[ 8141.474625 ] T3: releases lock S2
+[ 8141.498042 ] T3: exits S22(20)
+[ 8141.520584 ] T3: starts CS(30)
+[ 8171.548667 ] T3: enters S12(20)
+[ 8171.571500 ] T3: tries to acquire lock S1
+[ 8171.594125 ] T3: acquires lock S1
+[ 8191.620459 ] T3: releases lock S1
+[ 8191.643709 ] T3: exits S12(20)
+[ 8191.665917 ] T3: finishes
+[ 8521.349792 ] T3: activates
+[ 8521.374042 ] T3: enters S22(20)
+[ 8521.396542 ] T3: tries to acquire lock S2
+[ 8521.418751 ] T3: acquires lock S2
+[ 8541.447167 ] T3: releases lock S2
+[ 8541.470834 ] T3: exits S22(20)
+[ 8541.493334 ] T3: starts CS(30)
+[ 8571.520917 ] T3: enters S12(20)
+[ 8571.543626 ] T3: tries to acquire lock S1
+[ 8571.566251 ] T3: acquires lock S1
+[ 8591.592959 ] T3: releases lock S1
+[ 8591.616292 ] T3: exits S12(20)
+[ 8591.638667 ] T3: finishes
+[ 8921.347542 ] T3: activates
+[ 8921.371667 ] T3: enters S22(20)
+[ 8921.394292 ] T3: tries to acquire lock S2
+[ 8921.417001 ] T3: acquires lock S2
+[ 8941.445667 ] T3: releases lock S2
+[ 8941.469292 ] T3: exits S22(20)
+[ 8941.491626 ] T3: starts CS(30)
+[ 8971.520334 ] T3: enters S12(20)
+[ 8971.543501 ] T3: tries to acquire lock S1
+[ 8971.565792 ] T3: acquires lock S1
+[ 8991.593167 ] T3: releases lock S1
+[ 8991.616584 ] T3: exits S12(20)
+[ 8991.638792 ] T3: finishes
+[ 9321.346792 ] T3: activates
+[ 9321.371334 ] T3: enters S22(20)
+[ 9321.449667 ] T3: tries to acquire lock S2
+[ 9321.475251 ] T3: acquires lock S2
+[ 9341.503917 ] T3: releases lock S2
+[ 9341.527376 ] T3: exits S22(20)
+[ 9341.549834 ] T3: starts CS(30)
+[ 9371.577001 ] T3: enters S12(20)
+[ 9371.599959 ] T3: tries to acquire lock S1
+[ 9371.622251 ] T3: acquires lock S1
+[ 9391.649084 ] T3: releases lock S1
+[ 9391.672084 ] T3: exits S12(20)
+[ 9391.694251 ] T3: finishes
+[ 9721.348959 ] T3: activates
+[ 9721.372501 ] T3: enters S22(20)
+[ 9721.394709 ] T3: tries to acquire lock S2
+[ 9721.416834 ] T3: acquires lock S2
+[ 9741.443834 ] T3: releases lock S2
+[ 9741.467126 ] T3: exits S22(20)
+[ 9741.489751 ] T3: starts CS(30)
+[ 9771.516751 ] T3: enters S12(20)
+[ 9771.539709 ] T3: tries to acquire lock S1
+[ 9771.562334 ] T3: acquires lock S1
+[ 9791.589334 ] T3: releases lock S1
+[ 9791.634542 ] T3: exits S12(20)
+[ 9791.657251 ] T3: finishes
+[10121.350542 ] T3: activates
+[10121.374334 ] T3: enters S22(20)
+[10121.396709 ] T3: tries to acquire lock S2
+[10121.419001 ] T3: acquires lock S2
+[10141.446084 ] T3: releases lock S2
+[10141.469626 ] T3: exits S22(20)
+[10141.491626 ] T3: starts CS(30)
+[10171.519501 ] T3: enters S12(20)
+[10171.542876 ] T3: tries to acquire lock S1
+[10171.565334 ] T3: acquires lock S1
+[10191.591751 ] T3: releases lock S1
+[10191.614626 ] T3: exits S12(20)
+[10191.636709 ] T3: finishes
+[10521.354876 ] T3: activates
+[10521.378626 ] T3: enters S22(20)
+[10521.401001 ] T3: tries to acquire lock S2
+[10521.423459 ] T3: acquires lock S2
+[10541.451001 ] T3: releases lock S2
+[10541.474251 ] T3: exits S22(20)
+[10541.496584 ] T3: starts CS(30)
+[10571.523667 ] T3: enters S12(20)
+[10571.547167 ] T3: tries to acquire lock S1
+[10571.569501 ] T3: acquires lock S1
+[10591.596334 ] T3: releases lock S1
+[10591.619501 ] T3: exits S12(20)
+[10591.641959 ] T3: finishes
+[10921.348834 ] T3: activates
+[10921.372626 ] T3: enters S22(20)
+[10921.395126 ] T3: tries to acquire lock S2
+[10921.417626 ] T3: acquires lock S2
+[10941.445876 ] T3: releases lock S2
+[10941.469209 ] T3: exits S22(20)
+[10941.491751 ] T3: starts CS(30)
+[10971.519292 ] T3: enters S12(20)
+[10971.541917 ] T3: tries to acquire lock S1
+[10971.564209 ] T3: acquires lock S1
+[10991.591209 ] T3: releases lock S1
+[10991.614251 ] T3: exits S12(20)
+[10991.636626 ] T3: finishes
+[11321.350168 ] T3: activates
+[11321.417626 ] T3: enters S22(20)
+[11321.441584 ] T3: tries to acquire lock S2
+[11321.464084 ] T3: acquires lock S2
+[11341.491251 ] T3: releases lock S2
+[11341.514543 ] T3: exits S22(20)
+[11341.537043 ] T3: starts CS(30)
+[11371.564418 ] T3: enters S12(20)
+[11371.587084 ] T3: tries to acquire lock S1
+[11371.609418 ] T3: acquires lock S1
+[11391.636959 ] T3: releases lock S1
+[11391.660418 ] T3: exits S12(20)
+[11391.682543 ] T3: finishes
+[11721.349001 ] T3: activates
+[11721.373418 ] T3: enters S22(20)
+[11721.395751 ] T3: tries to acquire lock S2
+[11721.418043 ] T3: acquires lock S2
+[11741.445209 ] T3: releases lock S2
+[11741.468418 ] T3: exits S22(20)
+[11741.491001 ] T3: starts CS(30)
+[11771.517584 ] T3: enters S12(20)
+[11771.540418 ] T3: tries to acquire lock S1
+[11771.562793 ] T3: acquires lock S1
+[11791.589584 ] T3: releases lock S1
+[11791.635793 ] T3: exits S12(20)
+[11791.658751 ] T3: finishes
+[12121.350168 ] T3: activates
+[12121.373876 ] T3: dies
